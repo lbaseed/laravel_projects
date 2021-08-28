@@ -16,14 +16,14 @@ class CreateRidesTable extends Migration
         Schema::create('rides', function (Blueprint $table) {
             $table->id();
             $table->String("driver_id")->nullable();
-            $table->String("payment_method");
-            $table->geometry("pickup_location");
-            $table->geometryCollection("dropoff_location");
-            $table->bigInteger("rider_id");
+            $table->String("payment_method")->nullable();
+            $table->geometry("pickup_location")->nullable();
+            $table->geometryCollection("dropoff_location")->nullable();
+            $table->bigInteger("rider_id")->nullable();
             $table->String("rider_name");
             $table->String("rider_phone");
-            $table->String("pickup_address");
-            $table->String("dropoff_address");
+            $table->String("pickup_address")->nullable();
+            $table->String("dropoff_address")->nullable();
             $table->timestamps();
         });
     }

@@ -24,8 +24,12 @@ class RidesController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
-    {
-        //
+    { 
+        $request->validate([
+            "rider_name" => "required",
+            "rider_phone" => "required",
+        ]);
+        return Rides::create($request->all());
     }
 
     /**
@@ -36,7 +40,7 @@ class RidesController extends Controller
      */
     public function show($id)
     {
-        //
+        return Rides::find($id);
     }
 
     /**
@@ -48,7 +52,10 @@ class RidesController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $ride = Rides::find($id);
+        $ride->update($request->all());
+
+        return $ride;
     }
 
     /**
@@ -59,6 +66,21 @@ class RidesController extends Controller
      */
     public function destroy($id)
     {
-        //
+        return Rides::destroy($id);
+
+    }
+
+    /**
+     * search the specified resource from storage.
+     *
+     * @param  str  $name $phone
+     * @return \Illuminate\Http\Response
+     */
+    public function search($name)
+    {
+        return Rides::where('rider_name', 'like', '%'.$name.'%')
+        ->orWhere('rider_phone', 'like', '%'.$name.'%')
+        ->get();
+
     }
 }

@@ -15,9 +15,25 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+
+// Public Routes
+// Route::resource("rides", RidesController::class);
 Route::get("/rides", [RidesController::class, 'index']);
+Route::get("/rides/{id}", [RidesController::class, 'show']);
+Route::get("/rides/search/{name}", [RidesController::class, 'search']);
 
 
-Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
-    return $request->user();
-});
+
+
+// Route::middleware('auth:sanctum')->get('/user', function () {
+// Route::get("/rides/search/{name}", [RidesController::class, 'search']);
+// });
+
+// protected routes
+
+Route::group(['middleware' => ['auth:sanctum']], function () {
+    Route::post("/rides", [RidesController::class, 'store']);
+    Route::put("/rides/{id}", [RidesController::class, 'upadte']);
+    Route::delete("/rides/{id}", [RidesController::class, 'destroy']);
+    });
+    

@@ -9,6 +9,7 @@ class Rides extends Model
 {
     use HasFactory;
 
+        //add pickUp and dropOff location as fillable inthe future
     protected $fillable = [
         'rider_name',
         'rider_phone',
