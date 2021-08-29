@@ -36,7 +36,7 @@ Route::get("/rides/search/{name}", [RidesController::class, 'search']);
 
 Route::group(['middleware' => ['auth:sanctum']], function () {
     Route::post("/rides", [RidesController::class, 'store']);
-    Route::put("/rides/{id}", [RidesController::class, 'upadte']);
+    Route::put("/rides/{id}", [RidesController::class, 'update']);
     Route::delete("/rides/{id}", [RidesController::class, 'destroy']);
     Route::post("/logout", [AuthController::class, 'logout']);
     });
