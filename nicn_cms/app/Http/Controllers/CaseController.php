@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\models\Cases;
 use Illuminate\Http\Request;
 
 class CaseController extends Controller
@@ -13,7 +14,7 @@ class CaseController extends Controller
      */
     public function index()
     {
-        //
+        return Cases::all();
     }
 
     /**
@@ -24,7 +25,7 @@ class CaseController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        // 
     }
 
     /**

@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\CaseController;
+use App\Http\Controllers\APIAuthController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -21,8 +23,8 @@ use Illuminate\Support\Facades\Route;
 
 // Public Routes
 // Route::resource("rides", RidesController::class);
-Route::post("/register", [AuthController::class, 'register']);
-Route::post("/login", [AuthController::class, 'login']);
+Route::post("/register", [APIAuthController::class, 'register']);
+Route::post("/login", [APIAuthController::class, 'login']);
 
 
 
@@ -40,5 +42,5 @@ Route::group(['middleware' => ['auth:sanctum']], function () {
     Route::delete("/case/{id}", [CaseController::class, 'destroy']);
     Route::get("/case/{id}", [CaseController::class, 'show']);
     Route::get("/cases/search/{name}", [CaseController::class, 'search']);
-    Route::post("/logout", [AuthController::class, 'logout']);
+    Route::post("/logout", [APIAuthController::class, 'logout']);
 });
