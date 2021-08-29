@@ -14,10 +14,23 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('login');
 });
 
 Auth::routes();
 
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+// Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+
+// Route::middleware('auth')->get('', function () {
+//     // Route::get("/rides/search/{name}", [RidesController::class, 'search']);
+//     // Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+
+
+//     });
+
+Route::group(['middleware' => ['auth']], function(){
+    Route::get('/home', [App\Http\Controllers\HomeController::class, 'index']);
+    Route::get('/', [App\Http\Controllers\HomeController::class, 'index']);
+
+});
 
