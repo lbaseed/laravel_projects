@@ -31,7 +31,7 @@ Auth::routes();
 Route::group(['middleware' => ['auth']], function(){
     Route::get('/home', [App\Http\Controllers\HomeController::class, 'index']);
     Route::get('/', [App\Http\Controllers\HomeController::class, 'index']);
-    Route::get('/add-case', [App\Http\Controllers\CaseController::class, 'addCaseForm']);
-    Route::post('/add-case', [App\Http\Controllers\CaseController::class, 'addCase']);
+    Route::get('/case-form', [App\Http\Controllers\CaseController::class, 'addCaseForm']);
+    Route::post('/case-form', [App\Http\Controllers\CaseController::class, 'addCase']);
 });
 

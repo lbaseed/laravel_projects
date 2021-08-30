@@ -14,13 +14,13 @@
                     </a>
                   </li>
                   <li>
-                    <a href="{{ url('/add-case') }}" class="nav-link text-white">
+                    <a href="{{ url('/case-form') }}" class="nav-link text-white">
                       <svg class="bi me-2" width="16" height="16"><use xlink:href="#speedometer2"/></svg>
                       Add New Case
                     </a>
                   </li>
                   <li>
-                    <a href="#" class="nav-link text-white">
+                    <a href="{{ url('/') }}" class="nav-link text-white">
                       <svg class="bi me-2" width="16" height="16"><use xlink:href="#table"/></svg>
                       View All Cases
                     </a>
