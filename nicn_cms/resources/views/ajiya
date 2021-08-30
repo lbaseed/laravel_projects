@@ -1,0 +1,24 @@
+<div class="row justify-content-center">
+        <div class="col-lg-8 row">
+            <div class="col-md-3 d-lg-block d-none">
+
+                <div class="card">
+                    <div class="card-header">{{ __('Menu') }}</div>
+    
+                    <a href="{{ '' }}" class="list-group-item list-group-item-action">{{ 'Add new Case' }}</a>
+                    <a href="#" class="list-group-item list-group-item-action">{{ 'View All Cases' }}</a>
+                    <a href="#" class="list-group-item list-group-item-action">{{ 'Cases Return' }}</a>
+                </div>
+                
+            </div>
+
+            <div class="col-sm-12">
+                <div class="card ml-3">
+                    <div class="card-header">{{ __('Dashbaord') }}</div>
+    
+                    {{ View('components.addCase') }}
+                </div>
+            </div>
+
+        </div>
+</div>

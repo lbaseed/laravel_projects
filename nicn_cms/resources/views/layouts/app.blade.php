@@ -7,7 +7,7 @@
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <title>{{ config('app.name', 'NICN-CMS') }}</title>
+    <title>{{ config('NICN CMS', 'NICN-CMS') }}</title>
 
     <!-- Scripts -->
     <script src="{{ asset('js/app.js') }}" defer></script>
@@ -24,7 +24,7 @@
         <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
             <div class="container">
                 <a class="navbar-brand" href="{{ url('/') }}">
-                    {{ config('app.name', 'NICN-CMS') }}
+                    {{ config('NICN CMS', 'NICN-CMS') }}
                 </a>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
                     <span class="navbar-toggler-icon"></span>
@@ -53,8 +53,26 @@
                             @endif
                         @else
                             
-                            <li class="nav-item d-none d-sm-block">
-                                <a class="nav-link" href="">{{ __('New Case') }}</a>
+                            <li class="nav-item dropdown mr-5">
+                                <a class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>{{ __('Manage Case') }}</a>
+
+                                <div class="dropdown-menu dropdown-menu-left" aria-labelledby="navbarDropdown">
+
+
+                                {{-- route('profile') --}}
+                                    <a class="dropdown-item" href=""  onclick="">
+                                        {{ __('Add New Case') }}
+                                    </a>
+
+                                    <a class="dropdown-item" href=""  onclick="">
+                                        {{ __('View All Cases') }}
+                                    </a>
+
+                                    <a class="dropdown-item" href=""  onclick="">
+                                        {{ __('Cases Return') }}
+                                    </a>
+
+                                </div>
                             </li>
 
                             <li class="nav-item dropdown">

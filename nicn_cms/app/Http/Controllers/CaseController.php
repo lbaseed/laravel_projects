@@ -61,4 +61,12 @@ class CaseController extends Controller
     {
         //
     }
+
+    public function addCaseForm(){
+        return view('addCase');
+    }
+
+    public function addCase(Request $request){
+        return $request;
+    }
 }
