@@ -28,7 +28,7 @@ class CaseController extends Controller
      */
     public function store(Request $request)
     {
-        // 
+        //
     }
 
     /**
@@ -41,13 +41,13 @@ class CaseController extends Controller
     {
         $case = Cases::find($id);
 
-        return view("viewCase",['case' => $case]);
+        return view("viewCase", ['case' => $case]);
     }
     public function edit($id)
     {
         $case = Cases::find($id);
 
-        return view("editCase",['case' => $case]);
+        return view("editCase", ['case' => $case]);
     }
 
     /**
@@ -67,7 +67,7 @@ class CaseController extends Controller
             // 'defendant' => 'required',
             // 'division' => 'required',
             // 'filing_date' => 'required',
-            
+
             'assignment_date' => 'required',
             'hearing_date' => 'required',
             'current_stage' => 'required',
@@ -75,22 +75,20 @@ class CaseController extends Controller
 
         $case = Cases::find($id);
 
-
         //keep status change record
 
         $caseStage = CaseStages::create([
             'case_ref' => $case->id,
-            'case_id' =>$case->case_id,
+            'case_id' => $case->case_id,
             'prev_stage' => $case->current_stage,
-            'prev_stage_date' =>$case->hearing_date,
+            'prev_stage_date' => $case->hearing_date,
             'new_stage' => $fields["current_stage"],
             'new_stage_date' => $fields["hearing_date"],
         ]);
 
         $case->update($fields->all());
 
-
-       return $case ? redirect()->back()->withSuccess("Updated Successfully!"): redirect()->back()->withError("Failed to Update");
+        return $case ? redirect()->back()->withSuccess("Updated Successfully!") : redirect()->back()->withError("Failed to Update");
 
     }
 
@@ -105,11 +103,13 @@ class CaseController extends Controller
         //
     }
 
-    public function addCaseForm(){
+    public function addCaseForm()
+    {
         return view('addCase');
     }
 
-    public function addCase(Request $fields){
+    public function addCase(Request $fields)
+    {
 
         $fields->validate([
             'case_id' => 'required',
@@ -121,7 +121,7 @@ class CaseController extends Controller
             'filing_date' => 'required',
         ]);
 
-       $insert= Cases::create([
+        $insert = Cases::create([
             'case_id' => strtoupper($fields["case_id"]),
             'case_name' => $fields["case_name"],
             'case_subject' => $fields["case_subject"],
@@ -142,6 +142,6 @@ class CaseController extends Controller
             'new_stage_date' => $insert->filing_date,
         ]);
 
-       return $insert ? redirect()->back()->withSuccess("Case Added Successfully"): redirect()->back()->withError("Failed to Add");
+        return $insert ? redirect()->back()->withSuccess("Case Added Successfully") : redirect()->back()->withError("Failed to Add");
     }
 }

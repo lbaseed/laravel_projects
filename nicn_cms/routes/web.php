@@ -11,7 +11,7 @@ use Illuminate\Support\Facades\Route;
 | routes are loaded by the RouteServiceProvider within a group which
 | contains the "web" middleware group. Now create something great!
 |
-*/
+ */
 
 Route::get('/', function () {
     return view('login');
@@ -25,10 +25,9 @@ Auth::routes();
 //     // Route::get("/rides/search/{name}", [RidesController::class, 'search']);
 //     // Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
-
 //     });
 
-Route::group(['middleware' => ['auth']], function(){
+Route::group(['middleware' => ['auth']], function () {
     Route::get('/home', [App\Http\Controllers\HomeController::class, 'index']);
     Route::get('/', [App\Http\Controllers\HomeController::class, 'index']);
     Route::get('/case-form', [App\Http\Controllers\CaseController::class, 'addCaseForm']);
@@ -37,8 +36,6 @@ Route::group(['middleware' => ['auth']], function(){
 
     Route::get('/case/{id}/edit', [App\Http\Controllers\CaseController::class, 'edit']);
     Route::get('/case/{id}', [App\Http\Controllers\CaseController::class, 'show']);
-    Route::put('/case/{id}', [App\Http\Controllers\CaseController::class, 'update']);
-
+    Route::put('/case/{id}/edit', [App\Http\Controllers\CaseController::class, 'update']);
 
 });
-

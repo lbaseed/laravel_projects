@@ -118,8 +118,9 @@
                                         <label for="filing_date" class="col-md-4 col-form-label text-md-right">{{ __('Case Filing Date') }}</label>
                             
                                         <div class="col-md-6">
-                                            <input id="filing_date" type="text" class="form-control @error('filing_date') is-invalid @enderror" name="filing_date" value="{{ old('filing_date') }}" required autocomplete="off" autofocus>
-                            
+                                            
+                                                <input id="filing_date" type="text" class="form-control datePicker @error('filing_date') is-invalid @enderror datepicker" name="filing_date" value="{{ old('filing_date') }}" required autocomplete="off" placeholder="Select Date">
+                                                
                                             @error('filing_date')
                                                 <span class="invalid-feedback" role="alert">
                                                     <strong>{{ $message }}</strong>
