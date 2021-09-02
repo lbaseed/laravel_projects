@@ -62,8 +62,8 @@ class CaseController extends Controller
             // 'filing_date' => 'required',
             
             'assignment_date' => 'required',
-            'adjournment_date' => 'required',
-            'adjournment' => 'required',
+            'hearing_date' => 'required',
+            'current_stage' => 'required',
         ]);
 
         $case = Cases::find($id);

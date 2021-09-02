@@ -148,7 +148,7 @@
                                         <label for="adjournment" class="col-md-4 col-form-label text-md-right">{{ __('Case Adjournment') }}</label>
                             
                                         <div class="col-md-6">
-                                            <input id="adjournment" type="text" class="form-control @error('adjournment') is-invalid @enderror" name="adjournment" value="{{ $case->current_stage }}" required autocomplete="off" placeholder="for hearing">
+                                            <input id="adjournment" type="text" class="form-control @error('adjournment') is-invalid @enderror" name="current_stage" value="{{ $case->current_stage }}" required autocomplete="off" placeholder="for hearing">
                             
                                             @error('adjournment')
                                                 <span class="invalid-feedback" role="alert">
@@ -162,7 +162,7 @@
                                         <label for="adjournment_date" class="col-md-4 col-form-label text-md-right">{{ __('Case Adjournment Date') }}</label>
                             
                                         <div class="col-md-6">
-                                            <input id="adjournment_date" type="text" class="form-control @error('adjournment_date') is-invalid @enderror" name="adjournment_date"  value="{{ $case->hearing_date }}" required autocomplete="off">
+                                            <input id="adjournment_date" type="text" class="form-control @error('adjournment_date') is-invalid @enderror" name="hearing_date"  value="{{ $case->hearing_date }}" required autocomplete="off">
                             
                                             @error('adjournment_date')
                                                 <span class="invalid-feedback" role="alert">
