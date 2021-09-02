@@ -14,7 +14,9 @@ class CaseController extends Controller
      */
     public function index()
     {
-        return Cases::all();
+        $cases = Cases::all();
+
+        return view("viewCases", ['cases' => $cases]);
     }
 
     /**
@@ -36,7 +38,9 @@ class CaseController extends Controller
      */
     public function show($id)
     {
-        //
+        $case = Cases::find($id)->first();
+
+        return view("viewCase",['case' => $case]);
     }
 
     /**
@@ -46,9 +50,28 @@ class CaseController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $fields, $id)
     {
-        //
+        $fields->validate([
+            // 'case_id' => 'required',
+            // 'case_name' => 'required',
+            // 'case_subject' => 'required',
+            // 'claimant' => 'required',
+            // 'defendant' => 'required',
+            // 'division' => 'required',
+            // 'filing_date' => 'required',
+            
+            'assignment_date' => 'required',
+            'adjournment_date' => 'required',
+            'adjournment' => 'required',
+        ]);
+
+        $case = Cases::find($id);
+
+        $case->update($fields->all());
+
+       return $case ? redirect()->back()->withSuccess("Updated Successfully!"): redirect()->back()->withError("Failed to Update");
+
     }
 
     /**
@@ -66,7 +89,28 @@ class CaseController extends Controller
         return view('addCase');
     }
 
-    public function addCase(Request $request){
-        return $request;
+    public function addCase(Request $fields){
+
+        $fields->validate([
+            'case_id' => 'required',
+            'case_name' => 'required',
+            'case_subject' => 'required',
+            'claimant' => 'required',
+            'defendant' => 'required',
+            'division' => 'required',
+            'filing_date' => 'required',
+        ]);
+
+       $insert= Cases::create([
+            'case_id' => $fields["case_id"],
+            'case_name' => $fields["case_name"],
+            'case_subject' => $fields["case_subject"],
+            'claimant' => $fields["claimant"],
+            'defendant' => $fields["defendant"],
+            'filing_date' => $fields["filing_date"],
+            'division' => $fields["division"],
+        ]);
+
+       return $insert ? redirect()->back()->withSuccess("Case Added Successfully"): redirect()->back()->withError("Failed to Add");
     }
 }

@@ -8,4 +8,18 @@ use Illuminate\Database\Eloquent\Model;
 class Cases extends Model
 {
     use HasFactory;
+
+    protected $fillable = [
+        'case_id',
+        'case_name',
+        'case_subject',
+        'claimant',
+        'defendant',
+        'filing_date',
+        'assignment_date',
+        'hearing_date',
+        'division',
+        'current_stage',
+        'comments'
+    ];
 }

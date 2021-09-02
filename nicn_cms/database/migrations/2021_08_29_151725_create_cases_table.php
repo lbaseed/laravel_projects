@@ -21,10 +21,11 @@ class CreateCasesTable extends Migration
             $table->string('claimant');
             $table->string('defendant');
             $table->date('filing_date');
-            $table->date('assignment_date');
-            $table->date('hearing_date');
-            $table->string('current_stage');
-            $table->integer('counsel');
+            $table->date('assignment_date')->nullable();
+            $table->date('hearing_date')->nullable();
+            $table->string('current_stage')->nullable();
+            $table->text('comment')->nullable();
+            $table->integer('counsel')->nullable();
             $table->timestamps();
         });
     }
