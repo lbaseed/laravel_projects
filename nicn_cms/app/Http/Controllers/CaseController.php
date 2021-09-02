@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\models\Cases;
+use App\models\CaseStages;
 use Illuminate\Http\Request;
 
 class CaseController extends Controller
@@ -38,9 +39,15 @@ class CaseController extends Controller
      */
     public function show($id)
     {
-        $case = Cases::find($id)->first();
+        $case = Cases::find($id);
 
         return view("viewCase",['case' => $case]);
+    }
+    public function edit($id)
+    {
+        $case = Cases::find($id);
+
+        return view("editCase",['case' => $case]);
     }
 
     /**
@@ -68,7 +75,20 @@ class CaseController extends Controller
 
         $case = Cases::find($id);
 
+
+        //keep status change record
+
+        $caseStage = CaseStages::create([
+            'case_ref' => $case->id,
+            'case_id' =>$case->case_id,
+            'prev_stage' => $case->current_stage,
+            'prev_stage_date' =>$case->hearing_date,
+            'new_stage' => $fields["current_stage"],
+            'new_stage_date' => $fields["hearing_date"],
+        ]);
+
         $case->update($fields->all());
+
 
        return $case ? redirect()->back()->withSuccess("Updated Successfully!"): redirect()->back()->withError("Failed to Update");
 
@@ -102,13 +122,24 @@ class CaseController extends Controller
         ]);
 
        $insert= Cases::create([
-            'case_id' => $fields["case_id"],
+            'case_id' => strtoupper($fields["case_id"]),
             'case_name' => $fields["case_name"],
             'case_subject' => $fields["case_subject"],
             'claimant' => $fields["claimant"],
             'defendant' => $fields["defendant"],
             'filing_date' => $fields["filing_date"],
+            'current_stage' => "Fresh Filing",
             'division' => $fields["division"],
+        ]);
+
+        //insert CAse Stage
+        $case_stage = CaseStages::create([
+            'case_ref' => $insert->id,
+            'case_id' => $insert->case_id,
+            'prev_stage' => $insert->current_stage,
+            'prev_stage_date' => $insert->filing_date,
+            'new_stage' => $insert->current_stage,
+            'new_stage_date' => $insert->filing_date,
         ]);
 
        return $insert ? redirect()->back()->withSuccess("Case Added Successfully"): redirect()->back()->withError("Failed to Add");

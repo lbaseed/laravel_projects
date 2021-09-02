@@ -10,7 +10,7 @@
     
                 <div class="col-md-12 col-sm-12">
                     <div class="card ml-3">
-                        <div class="card-header">{{ __('Case Profile') }}</div>
+                        <div class="card-header">{{ __('Update Case Information') }}</div>
                             <div class="card-body">
                                 
                                 <form method="POST" action="/case/{{ $case->id }}/edit">

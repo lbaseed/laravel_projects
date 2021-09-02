@@ -17,10 +17,10 @@ class CreateCaseStagesTable extends Migration
             $table->id();
             $table->integer('case_ref');
             $table->string('case_id');
-            $table->string('prev_stage');
-            $table->date('prev_stage_date');
-            $table->string('new_stage');
-            $table->date('new_stage_date');
+            $table->string('prev_stage')->nullable();
+            $table->date('prev_stage_date')->nullable();
+            $table->string('new_stage')->nullable();
+            $table->date('new_stage_date')->nullable();
             $table->timestamps();
         });
     }

@@ -25,21 +25,19 @@
                                             </tr>
                                         </thead>
                                         <tbody>    
-                                          @php
-                                              $sn=1;
-                                          @endphp
+                                          
                                         @foreach ($cases as $case)
                                         
                                             <tr>
-                                                <td>{{ $sn }}</td>
-                                                <td><a href="/case/{{ $case->id }}"><b>{{ $case->case_id }}</b></a></td> 
+                                                <td>{{ $loop->index + 1 }}</td>
+                                                <td><a href="/case/{{ $case->id }}/edit"><b>{{ $case->case_id }}</b></a></td> 
                                                 <td>{{ $case->case_name }}</td>
-                                                <td>{{ $case->case_type }}</td>
+                                                <td>{{ $case->case_subject }}</td>
                                                 <td>{{ $case->division }}</td>
                                             </tr>
                                         
 
-                                            {{ $sn ++ }}
+                                          
                                         @endforeach
                                         </tbody>
                                         <tfoot>
