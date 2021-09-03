@@ -12,44 +12,44 @@
           <!-- Nav items -->
           <ul class="navbar-nav">
             <li class="nav-item">
-              <a class="nav-link {{ activeMenu('home') }} {{ activeMenu('/') }}" href="{{ url('/') }}">
+              <a class="nav-link <?php echo e(activeMenu('home')); ?> <?php echo e(activeMenu('/')); ?>" href="<?php echo e(url('/')); ?>">
                 <i class="ni ni-tv-2 text-primary"></i>
                 <span class="nav-link-text">Dashboard</span>
               </a>
             </li>
             <li class="nav-item">
-              <a class="nav-link {{ activeMenu('case-form') }}" href="{{ url('/case-form') }}">
+              <a class="nav-link <?php echo e(activeMenu('case-form')); ?>" href="<?php echo e(url('/case-form')); ?>">
                 <i class="ni ni-collection text-primary"></i>
                 <span class="nav-link-text">Add New Case</span>
               </a>
             </li>
             <li class="nav-item">
-              <a class="nav-link {{ activeMenu('cases') }}" href="{{ url('/cases') }}">
+              <a class="nav-link <?php echo e(activeMenu('cases')); ?>" href="<?php echo e(url('/cases')); ?>">
                 <i class="ni ni-pin-3 text-primary"></i>
                 <span class="nav-link-text">View All Cases</span>
               </a>
             </li>
             <li class="nav-item">
-                <a class="nav-link {{ activeMenu('case-returns') }}" href="#">
+                <a class="nav-link <?php echo e(activeMenu('case-returns')); ?>" href="#">
                   <i class="ni ni-bullet-list-67 text-primary"></i>
                   <span class="nav-link-text">Cases Return</span>
                 </a>
             </li>
             <li class="nav-item">
-              <a class="nav-link {{ activeMenu('user-profile') }}" href="#">
+              <a class="nav-link <?php echo e(activeMenu('user-profile')); ?>" href="#">
                 <i class="ni ni-single-02 text-primary"></i>
                 <span class="nav-link-text">Profile</span>
               </a>
             </li>
             
             <li class="nav-item">
-              <a class="nav-link {{ activeMenu('users') }}" href="#">
+              <a class="nav-link <?php echo e(activeMenu('users')); ?>" href="#">
                 <i class="ni ni-key-25 text-primary"></i>
                 <span class="nav-link-text">Manage Users</span>
               </a>
             </li>
             <li class="nav-item">
-              <a class="nav-link {{ activeMenu('settings') }}" href="#">
+              <a class="nav-link <?php echo e(activeMenu('settings')); ?>" href="#">
                 <i class="ni ni-circle-08 text-primary"></i>
                 <span class="nav-link-text">Settings</span>
               </a>
@@ -83,18 +83,18 @@
             </li>
             
             <li class="nav-item">
-              <a class="nav-link" href="{{ route('logout') }}" onclick="event.preventDefault();
+              <a class="nav-link" href="<?php echo e(route('logout')); ?>" onclick="event.preventDefault();
               document.getElementById('logout-form').submit();">
                 <i class="ni ni-button-power text-red"></i>
                 <span class="nav-link-text">Logout</span>
               </a>
 
-              <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
-                @csrf
+              <form id="logout-form" action="<?php echo e(route('logout')); ?>" method="POST" class="d-none">
+                <?php echo csrf_field(); ?>
             </form>
             </li>
           </ul>
         </div>
       </div>
     </div>
-  </nav>
+  </nav><?php /**PATH C:\www\laravel_projects\nicn_cms\resources\views/navbars/sideNav.blade.php ENDPATH**/ ?>

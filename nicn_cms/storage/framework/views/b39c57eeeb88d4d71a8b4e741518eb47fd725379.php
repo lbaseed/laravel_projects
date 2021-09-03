@@ -36,7 +36,7 @@
           </li>
 
         </ul>
-        {{-- User action buttons --}}
+        
         <ul class="navbar-nav align-items-center  ml-auto ml-md-0 ">
           <li class="nav-item dropdown">
             <a class="nav-link pr-0" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -47,7 +47,7 @@
                 </span>
               -->
                 <div class="media-body  ml-2  d-none d-lg-block">
-                  <span class="mb-0 text-sm  font-weight-bold">{{ Auth::user()->name }}</span>
+                  <span class="mb-0 text-sm  font-weight-bold"><?php echo e(Auth::user()->name); ?></span>
                 </div>
               </div>
             </a>
@@ -72,7 +72,7 @@
                 <span>Support</span>
               </a>
               <div class="dropdown-divider"></div>
-              <a href="{{ url('logout') }}" class="dropdown-item" onclick="event.preventDefault();
+              <a href="<?php echo e(url('logout')); ?>" class="dropdown-item" onclick="event.preventDefault();
               document.getElementById('logout-form').submit();">
                 <i class="ni ni-user-run"></i>
                 <span>Logout</span>
@@ -82,4 +82,4 @@
         </ul>
       </div>
     </div>
-  </nav>
+  </nav><?php /**PATH C:\www\laravel_projects\nicn_cms\resources\views/navbars/navbar.blade.php ENDPATH**/ ?>

@@ -132,7 +132,7 @@
                                         <label for="assignment_date" class="col-md-4 col-form-label text-md-right">{{ __('Case Assignment Date') }}</label>
                             
                                         <div class="col-md-6">
-                                            <input id="assignment_date" type="text" class="form-control datePicker @error('assignment_date') is-invalid @enderror" name="assignment_date" value="{{ $case->assignment_date }}" required autocomplete="off">
+                                            <input id="assignment_date" type="text" class="form-control datepicker @error('assignment_date') is-invalid @enderror" name="assignment_date" value="{{ $case->assignment_date }}" required autocomplete="off">
                             
                                             @error('assignment_date')
                                                 <span class="invalid-feedback" role="alert">
@@ -160,7 +160,7 @@
                                         <label for="adjournment_date" class="col-md-4 col-form-label text-md-right">{{ __('Case Adjournment Date') }}</label>
                             
                                         <div class="col-md-6">
-                                            <input id="adjournment_date" type="text" class="form-control datePicker @error('adjournment_date') is-invalid @enderror" name="hearing_date"  value="{{ $case->hearing_date }}" required autocomplete="off">
+                                            <input id="adjournment_date" type="text" class="form-control datepicker @error('adjournment_date') is-invalid @enderror" name="hearing_date"  value="{{ $case->hearing_date }}" required autocomplete="off">
                             
                                             @error('adjournment_date')
                                                 <span class="invalid-feedback" role="alert">
