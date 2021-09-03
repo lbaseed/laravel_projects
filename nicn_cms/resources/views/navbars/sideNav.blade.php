@@ -83,8 +83,8 @@
             </li>
             
             <li class="nav-item">
-              <a class="nav-link" href="" target="_blank">
-                <i class="ni ni-button-power text-red"></i>
+              <a class="nav-link" href="{{ route('logout') }}" target="_blank">
+                <i class="ni ni-user-run text-red"></i>
                 <span class="nav-link-text">Logout</span>
               </a>
             </li>
