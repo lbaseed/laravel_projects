@@ -1,7 +1,5 @@
 @extends('layouts.master')
 @section('content')
-@include('navigation.navbar')
-@include('navigation.sidebar')
 <main class="py-4">
     <div class="container">
         
@@ -11,7 +9,7 @@
                 
 
                 <div class="col-md-12 col-sm-12">
-                    <div class="card ml-3">
+                    <div class="card">
                             <div class="card-header">{{ __('Case Profile') }}
                                 <a href="{{ url('/cases') }}" class="btn btn-outline-secondary ml-5 float-right">
                                     {{ __('Back') }}
@@ -46,7 +44,7 @@
                                             </tr><tr>
                                                 <td><b>Adjournment Date</b></td> <td>{{ $case->hearing_date }}</td>
                                             </tr><tr>
-                                                <td><b>Coments</b></td> <td>{{ $case->comments }}</td>
+                                                <td><b>Comments</b></td> <td>{{ $case->comments }}</td>
                                             </tr>
                                         
                                         </tbody>

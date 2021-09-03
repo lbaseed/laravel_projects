@@ -1,40 +1,60 @@
-<!doctype html>
-<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
+
+<!DOCTYPE html>
+<html>
+
 <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-
-    <!-- CSRF Token -->
-    <meta name="csrf-token" content="{{ csrf_token() }}">
-
-    <title>{{ config('NICN CMS', 'NICN-CMS') }}</title>
-
-    <!-- Scripts -->
-    <script src="{{ asset('js/app.js') }}"></script>
-
-    <!-- Fonts -->
-    <link rel="dns-prefetch" href="//fonts.gstatic.com">
-    <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
-
-    <!-- Styles -->
-    <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="Start your development with a Dashboard for Bootstrap 4.">
+  <meta name="author" content="Creative Tim">
+  <title>{{ config('NICN CMS', 'NICN-CMS') }}</title>
+  <!-- Fonts -->
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700">
+  <!-- Icons -->
+  <link rel="stylesheet" href="{{URL::to('assets/vendor/nucleo/css/nucleo.css')}}" type="text/css">
+  <link rel="stylesheet" href="{{URL::to('assets/vendor/@fortawesome/fontawesome-free/css/all.min.css')}}" type="text/css">
+  <!-- Page plugins -->
+  <!-- Argon CSS -->
+  <link rel="stylesheet" href="{{URL::to('assets/css/argon.css?v=1.2.0')}}" type="text/css">
 </head>
-<body>
-    
 
-        @yield('content')
+<body>
+  <!-- Sidenav -->
+  @include('navbars.sideNav')
+  
+
+  <!-- Main content -->
+  <div class="main-content" id="panel">
     
-        <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
-    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
-    <script>
-       
-            $(".datePicker" ).datepicker({
-                changeMonth: true,
-                changeYear: true,
-                dateFormat: 'yy-mm-dd'
-            });
+    <!-- Topnav -->
+    @include('navbars.navbar')
+    <!-- Header -->
+    <!-- Header -->
+    @yield('content')
+  <!-- Footer -->
+  	@include('navbars.footer')
+  </div>
+	  
+  
+  <!-- Argon Scripts -->
+  <!-- Core -->
+  <script src="{{URL::to('assets/vendor/jquery/dist/jquery.min.js')}}"></script>
+  <script src="{{URL::to('assets/vendor/bootstrap/dist/js/bootstrap.bundle.min.js')}}"></script>
+  <script src="{{URL::to('assets/vendor/js-cookie/js.cookie.js')}}"></script>
+  <script src="{{URL::to('assets/vendor/jquery.scrollbar/jquery.scrollbar.min.js')}}"></script>
+  <script src="{{URL::to('assets/vendor/jquery-scroll-lock/dist/jquery-scrollLock.min.js')}}"></script>
+  <!-- Optional JS -->
+  <script src="{{URL::to('assets/vendor/chart.js/dist/Chart.min.js')}}"></script>
+  <script src="{{URL::to('assets/vendor/chart.js/dist/Chart.extension.js')}}"></script>
+  <script src="/assets/vendor/bootstrap-datepicker/dist/js/bootstrap-datepicker.min.js"></script>
+  <script>  
+    $(".datepicker" ).datepicker({
         
-    </script>
-        
+        format: 'yyyy-mm-dd'
+    });
+</script>
+  <!-- Argon JS -->
+  <script src="{{URL::to('assets/js/argon.js?v=1.2.0')}}"></script>
 </body>
+
 </html>

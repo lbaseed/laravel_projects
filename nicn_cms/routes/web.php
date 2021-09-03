@@ -13,6 +13,14 @@ use Illuminate\Support\Facades\Route;
 |
  */
 
+function activeMenu($uri = '') {
+    $active = '';
+    if (Request::is(Request::segment(1) . '/' . $uri . '/*') || Request::is(Request::segment(1) . '/' . $uri) || Request::is($uri)) {
+        $active = 'active';
+    }
+    return $active;
+}
+
 Route::get('/', function () {
     return view('login');
 });

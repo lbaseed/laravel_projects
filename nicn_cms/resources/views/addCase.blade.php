@@ -1,7 +1,5 @@
 @extends('layouts.master')
 @section('content')
-@include('navigation.navbar')
-@include('navigation.sidebar')
 <main class="py-4">
     <div class="container">
         
@@ -119,7 +117,7 @@
                             
                                         <div class="col-md-6">
                                             
-                                                <input id="filing_date" type="text" class="form-control datePicker @error('filing_date') is-invalid @enderror datepicker" name="filing_date" value="{{ old('filing_date') }}" required autocomplete="off" placeholder="Select Date">
+                                                <input id="filing_date" type="text" class="form-control datepicker @error('filing_date') is-invalid @enderror datepicker" name="filing_date" value="{{ old('filing_date') }}" required autocomplete="off" placeholder="Select Date">
                                                 
                                             @error('filing_date')
                                                 <span class="invalid-feedback" role="alert">
