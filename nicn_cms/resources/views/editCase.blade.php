@@ -191,7 +191,12 @@
                                             <button type="submit" class="btn btn-outline-primary">
                                                 {{ __('Update Case') }}
                                             </button>
+
+                                            <a href="{{ url()->previous() }}" class="btn btn-outline-secondary ml-5">
+                                                {{ __('Back') }}
+                                            </a>
                                         </div>
+                                        
                                     </div>
                                 </form>
 
