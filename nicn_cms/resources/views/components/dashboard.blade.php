@@ -54,8 +54,7 @@
                 <div class="col">
                     <h5 class="card-title text-uppercase text-muted mb-0">Yola Cases</h5>
                     <span class="h2 font-weight-bold mb-0">
-                        {{ App\Http\Controllers\CaseController::casesQty('YL')  }}
-
+                        {{ App\Http\Controllers\CaseController::casesQty('BAU')  }}
                     </span>
                 </div>
                 <div class="col-auto">
@@ -80,7 +79,11 @@
             <div class="card">
                     <div class="card-header">{{ __('Gombe Division Cases') }}</div>
                     <div class="card-body">
-                        
+                        <ul>
+                            @foreach ($gombe as $case)
+                                <li>{{ $case->case_id }}</li>
+                            @endforeach
+                        </ul>
                     </div>
                 
             </div>

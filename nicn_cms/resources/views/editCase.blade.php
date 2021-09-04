@@ -190,9 +190,6 @@
                                                 {{ __('Update Case') }}
                                             </button>
 
-                                            <a href="{{ url()->previous() }}" class="btn btn-outline-secondary ml-5">
-                                                {{ __('Back') }}
-                                            </a>
                                         </div>
                                         
                                     </div>

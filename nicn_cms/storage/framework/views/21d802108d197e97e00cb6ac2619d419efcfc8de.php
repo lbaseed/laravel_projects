@@ -40,7 +40,7 @@ unset($__errorArgs, $__bag); ?>" name="division" value="<?php echo e(old('divisi
                                                 <option >Select Division</option>
                                                 <option value="BAU">BAU</option>
                                                 <option value="GMB">GMB</option>
-                                                <option value="YLA">YLA</option>
+                                                <option value="YL">YL</option>
                                             </select>
                             
                                             <?php $__errorArgs = ['division'];

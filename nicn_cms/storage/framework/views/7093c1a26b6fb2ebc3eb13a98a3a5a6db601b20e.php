@@ -347,10 +347,6 @@ unset($__errorArgs, $__bag); ?>
 
                                             </button>
 
-                                            <a href="<?php echo e(url()->previous()); ?>" class="btn btn-outline-secondary ml-5">
-                                                <?php echo e(__('Back')); ?>
-
-                                            </a>
                                         </div>
                                         
                                     </div>

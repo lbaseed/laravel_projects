@@ -7,7 +7,10 @@
             <div class="row">
                 <div class="col">
                     <h5 class="card-title text-uppercase text-muted mb-0">Gombe Cases</h5>
-                    <span class="h2 font-weight-bold mb-0">13</span>
+                    <span class="h2 font-weight-bold mb-0">
+                        <?php echo e(App\Http\Controllers\CaseController::casesQty('GMB')); ?>
+
+                    </span>
                 </div>
                 <div class="col-auto">
                 <div class="icon icon-shape bg-primary text-white rounded-circle shadow">
@@ -28,7 +31,10 @@
             <div class="row">
                 <div class="col">
                     <h5 class="card-title text-uppercase text-muted mb-0">Bauchi Cases</h5>
-                    <span class="h2 font-weight-bold mb-0">74</span>
+                    <span class="h2 font-weight-bold mb-0">
+                        <?php echo e(App\Http\Controllers\CaseController::casesQty('BAU')); ?>
+
+                    </span>
                 </div>
                 <div class="col-auto">
                 <div class="icon icon-shape bg-primary text-white rounded-circle shadow">
@@ -49,7 +55,10 @@
             <div class="row">
                 <div class="col">
                     <h5 class="card-title text-uppercase text-muted mb-0">Yola Cases</h5>
-                    <span class="h2 font-weight-bold mb-0">56</span>
+                    <span class="h2 font-weight-bold mb-0">
+                        <?php echo e(App\Http\Controllers\CaseController::casesQty('BAU')); ?>
+
+                    </span>
                 </div>
                 <div class="col-auto">
                 <div class="icon icon-shape bg-primary text-white rounded-circle shadow">
@@ -73,7 +82,11 @@
             <div class="card">
                     <div class="card-header"><?php echo e(__('Gombe Division Cases')); ?></div>
                     <div class="card-body">
-                        
+                        <ul>
+                            <?php $__currentLoopData = $gombe; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $case): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                                <li><?php echo e($case->case_id); ?></li>
+                            <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+                        </ul>
                     </div>
                 
             </div>

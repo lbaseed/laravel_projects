@@ -22,8 +22,6 @@ function activeMenu($uri = '')
     return $active;
 }
 
-
-
 Route::get('/', function () {
     return view('login');
 });
@@ -44,15 +42,16 @@ Auth::routes();
 Route::group(['middleware' => ['auth']], function () {
     Route::get('/home', [App\Http\Controllers\HomeController::class, 'index']);
     Route::get('/', [App\Http\Controllers\HomeController::class, 'index']);
+// add new case 
     Route::get('/case-form', [App\Http\Controllers\CaseController::class, 'addCaseForm']);
     Route::post('/case-form', [App\Http\Controllers\CaseController::class, 'addCase']);
-
+// Filter cases
     Route::get('/cases', [App\Http\Controllers\CaseController::class, 'index']);
     Route::post('/cases', [App\Http\Controllers\CaseController::class, 'divisionCases']);
 
 // search route
     Route::get('/search', [App\Http\Controllers\CaseController::class, 'searchCases']);
-
+// Manage cases
     Route::get('/case/{id}/edit', [App\Http\Controllers\CaseController::class, 'edit']);
     Route::get('/case/{id}', [App\Http\Controllers\CaseController::class, 'show']);
     Route::put('/case/{id}/edit', [App\Http\Controllers\CaseController::class, 'update']);

@@ -77,9 +77,9 @@ class CaseController extends Controller
             // 'division' => 'required',
             // 'filing_date' => 'required',
 
-            'assignment_date' => 'required',
             'hearing_date' => 'required',
             'current_stage' => 'required',
+            'comments'=>'required'
         ]);
 
         $case = Cases::find($id);
@@ -182,8 +182,8 @@ class CaseController extends Controller
     }
 
     public static function cases($division){
-        $numCases = Cases::where('division', $division)->count();
+        $divCases = Cases::where('division', $division);
 
-        return $numCases;
+        return $divCases;
     }
 }
