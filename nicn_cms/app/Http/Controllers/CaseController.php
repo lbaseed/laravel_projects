@@ -8,6 +8,7 @@ use Illuminate\Http\Request;
 
 class CaseController extends Controller
 {
+
     /**
      * Display a listing of the resource.
      *
@@ -172,5 +173,17 @@ class CaseController extends Controller
         ->get();
 
         return view('searchCases',['cases' => $cases]);
+    }
+
+    public static function casesQty($division){
+        $numCases = Cases::where('division', $division)->count();
+
+        return $numCases;
+    }
+
+    public static function cases($division){
+        $numCases = Cases::where('division', $division)->count();
+
+        return $numCases;
     }
 }

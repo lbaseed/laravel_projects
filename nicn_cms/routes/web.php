@@ -1,6 +1,5 @@
 <?php
 
-
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -22,6 +21,8 @@ function activeMenu($uri = '')
     }
     return $active;
 }
+
+
 
 Route::get('/', function () {
     return view('login');

@@ -7,7 +7,10 @@
             <div class="row">
                 <div class="col">
                     <h5 class="card-title text-uppercase text-muted mb-0">Gombe Cases</h5>
-                    <span class="h2 font-weight-bold mb-0">13</span>
+                    <span class="h2 font-weight-bold mb-0">
+                        <?php echo e(App\Http\Controllers\CaseController::cases('GMB')); ?>
+
+                    </span>
                 </div>
                 <div class="col-auto">
                 <div class="icon icon-shape bg-primary text-white rounded-circle shadow">
@@ -28,7 +31,10 @@
             <div class="row">
                 <div class="col">
                     <h5 class="card-title text-uppercase text-muted mb-0">Bauchi Cases</h5>
-                    <span class="h2 font-weight-bold mb-0">74</span>
+                    <span class="h2 font-weight-bold mb-0">
+                        <?php echo e(App\Http\Controllers\CaseController::cases('BAU')); ?>
+
+                    </span>
                 </div>
                 <div class="col-auto">
                 <div class="icon icon-shape bg-primary text-white rounded-circle shadow">
@@ -49,7 +55,11 @@
             <div class="row">
                 <div class="col">
                     <h5 class="card-title text-uppercase text-muted mb-0">Yola Cases</h5>
-                    <span class="h2 font-weight-bold mb-0">56</span>
+                    <span class="h2 font-weight-bold mb-0">
+                        <?php echo e(App\Http\Controllers\CaseController::cases('YL')); ?>
+
+
+                    </span>
                 </div>
                 <div class="col-auto">
                 <div class="icon icon-shape bg-primary text-white rounded-circle shadow">
