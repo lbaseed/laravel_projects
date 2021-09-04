@@ -8,9 +8,21 @@
     
                 <div class="col-md-12 col-sm-12">
                     <div class="card">
-                        <div class="card-header"><?php echo e(__('View All Cases')); ?></div>
+                        <div class="card-header"><?php echo e(__('View All Cases')); ?> [<?php echo e($division); ?> Div]</div>
                             <div class="card-body">
-                            
+                                <div class="col-md-6 mb-3">
+                                    <form id="division-cases" action="/cases" method="POST">
+                                        <?php echo csrf_field(); ?>
+                                        <select id="division" type="text" class="form-control" name="division">
+                                            <option value="">Select Division</option>
+                                            <option value="ALL">All Divisions</option>
+                                            <option value="BAU">BAU</option>
+                                            <option value="GMB">GMB</option>
+                                            <option value="YL">YL</option>
+                                        </select>
+                                      </form>
+                                    
+                                </div>
                                 <?php if(count($cases)>0): ?>
                                 <div class="table-responsive">
                                     <table class="table table-hover">
@@ -51,7 +63,7 @@
                                     </table>
                                 </div>
                                 <?php else: ?>
-                                    
+                                  No Record Found  
                                 <?php endif; ?>
                                
                             </div>
@@ -61,7 +73,8 @@
     
             </div>
         </div>
-    </div>   
+    </div>
+      
 </main>
 <?php $__env->stopSection(); ?>
 

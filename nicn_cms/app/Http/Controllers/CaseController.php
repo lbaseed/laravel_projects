@@ -163,4 +163,14 @@ class CaseController extends Controller
 
         return $insert ? redirect()->back()->withSuccess("Case Added Successfully") : redirect()->back()->withError("Failed to Add");
     }
+
+    public function searchCases(Request $field){
+
+        $cases = Cases::where('case_id', 'like', '%'.$field["param"].'%')
+        ->orWhere('case_name', 'like', '%'.$field["param"].'%')
+        ->orderBy('case_id', 'asc')
+        ->get();
+
+        return view('searchCases',['cases' => $cases]);
+    }
 }

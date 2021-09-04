@@ -49,6 +49,9 @@ Route::group(['middleware' => ['auth']], function () {
     Route::get('/cases', [App\Http\Controllers\CaseController::class, 'index']);
     Route::post('/cases', [App\Http\Controllers\CaseController::class, 'divisionCases']);
 
+// search route
+    Route::get('/search', [App\Http\Controllers\CaseController::class, 'searchCases']);
+
     Route::get('/case/{id}/edit', [App\Http\Controllers\CaseController::class, 'edit']);
     Route::get('/case/{id}', [App\Http\Controllers\CaseController::class, 'show']);
     Route::put('/case/{id}/edit', [App\Http\Controllers\CaseController::class, 'update']);

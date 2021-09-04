@@ -84,14 +84,10 @@
             
             <li class="nav-item">
               <a class="nav-link" href="<?php echo e(route('logout')); ?>" onclick="event.preventDefault();
-              document.getElementById('logout-form').submit();">
-                <i class="ni ni-button-power text-red"></i>
+              document.getElementById('logout-form').submit();" >
+                <i class="ni ni-user-run text-red"></i>
                 <span class="nav-link-text">Logout</span>
               </a>
-
-              <form id="logout-form" action="<?php echo e(route('logout')); ?>" method="POST" class="d-none">
-                <?php echo csrf_field(); ?>
-            </form>
             </li>
           </ul>
         </div>
