@@ -232,14 +232,14 @@ unset($__errorArgs, $__bag); ?>
                                         <label for="assignment_date" class="col-md-4 col-form-label text-md-right"><?php echo e(__('Case Assignment Date')); ?></label>
                             
                                         <div class="col-md-6">
-                                            <input id="assignment_date" type="text" class="form-control datePicker <?php $__errorArgs = ['assignment_date'];
+                                            <input id="assignment_date" type="text" class="form-control datepicker <?php $__errorArgs = ['assignment_date'];
 $__bag = $errors->getBag($__errorArgs[1] ?? 'default');
 if ($__bag->has($__errorArgs[0])) :
 if (isset($message)) { $__messageOriginal = $message; }
 $message = $__bag->first($__errorArgs[0]); ?> is-invalid <?php unset($message);
 if (isset($__messageOriginal)) { $message = $__messageOriginal; }
 endif;
-unset($__errorArgs, $__bag); ?>" name="assignment_date" value="<?php echo e($case->assignment_date); ?>" required autocomplete="off">
+unset($__errorArgs, $__bag); ?>" name="assignment_date" value="<?php echo e($case->assignment_date); ?>" <?php echo e($case->assignment_date!=null ? 'disabled':'required'); ?>  autocomplete="off">
                             
                                             <?php $__errorArgs = ['assignment_date'];
 $__bag = $errors->getBag($__errorArgs[1] ?? 'default');
@@ -288,7 +288,7 @@ unset($__errorArgs, $__bag); ?>
                                         <label for="adjournment_date" class="col-md-4 col-form-label text-md-right"><?php echo e(__('Case Adjournment Date')); ?></label>
                             
                                         <div class="col-md-6">
-                                            <input id="adjournment_date" type="text" class="form-control datePicker <?php $__errorArgs = ['adjournment_date'];
+                                            <input id="adjournment_date" type="text" class="form-control datepicker <?php $__errorArgs = ['adjournment_date'];
 $__bag = $errors->getBag($__errorArgs[1] ?? 'default');
 if ($__bag->has($__errorArgs[0])) :
 if (isset($message)) { $__messageOriginal = $message; }

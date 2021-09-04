@@ -1,5 +1,6 @@
 <?php
 
+
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -40,7 +41,9 @@ Route::group(['middleware' => ['auth']], function () {
     Route::get('/', [App\Http\Controllers\HomeController::class, 'index']);
     Route::get('/case-form', [App\Http\Controllers\CaseController::class, 'addCaseForm']);
     Route::post('/case-form', [App\Http\Controllers\CaseController::class, 'addCase']);
+
     Route::get('/cases', [App\Http\Controllers\CaseController::class, 'index']);
+    Route::post('/cases', [App\Http\Controllers\CaseController::class, 'divisionCases']);
 
     Route::get('/case/{id}/edit', [App\Http\Controllers\CaseController::class, 'edit']);
     Route::get('/case/{id}', [App\Http\Controllers\CaseController::class, 'show']);

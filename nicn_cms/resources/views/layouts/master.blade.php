@@ -52,6 +52,12 @@
         
         format: 'yyyy-mm-dd'
     });
+
+    $("#division").change(function(){
+            event.preventDefault();
+            document.getElementById('division-cases').submit();
+
+        });
 </script>
   <!-- Argon JS -->
   <script src="{{URL::to('assets/js/argon.js?v=1.2.0')}}"></script>

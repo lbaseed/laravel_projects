@@ -83,7 +83,8 @@
             </li>
             
             <li class="nav-item">
-              <a class="nav-link" href="<?php echo e(route('logout')); ?>" target="_blank">
+              <a class="nav-link" href="<?php echo e(route('logout')); ?>" onclick="event.preventDefault();
+              document.getElementById('logout-form').submit();" >
                 <i class="ni ni-user-run text-red"></i>
                 <span class="nav-link-text">Logout</span>
               </a>

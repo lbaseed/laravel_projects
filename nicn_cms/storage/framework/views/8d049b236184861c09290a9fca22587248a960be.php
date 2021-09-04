@@ -10,12 +10,8 @@
 
                 <div class="col-md-12 col-sm-12">
                     <div class="card">
-                            <div class="card-header"><?php echo e(__('Case Profile')); ?>
-
-                                <a href="<?php echo e(url('/cases')); ?>" class="btn btn-outline-secondary ml-5 float-right">
-                                    <?php echo e(__('Back')); ?>
-
-                                </a>
+                            <div class="card-header"><h3><?php echo e(__('Case Profile')); ?></h3>
+                                
                             </div>
                             <div class="card-body p-0">
                             
@@ -67,10 +63,25 @@
 
                 <div class="col-md-12 col-sm-12">    
 
-                    <div class="card ml-3 mt-3">
-                            <div class="card-header"><?php echo e(__('Case life Cycle Activities')); ?></div>
+                    <div class="card mt-3">
+                            <div class="card-header"><h3><?php echo e(__('Case life Cycle Activities')); ?></h3><small>Most recent first</small></div>
                             <div class="card-body">
-
+                                <ol class="list-group list-group-numbered">
+                                    <?php $__empty_1 = true; $__currentLoopData = $caseStages; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $caseStage): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); $__empty_1 = false; ?>
+                                        <li class="list-group-item d-flex justify-content-between align-items-start">
+                                            <div class="ms-2 me-auto">
+                                            <div class="font-weight-bold">[<?php echo e($caseStage->prev_stage_date); ?>]</div>
+                                                Case Stage Changed from <b><?php echo e($caseStage->prev_stage); ?></b> on <b><?php echo e($caseStage->prev_stage_date); ?></b> to Adjourned <b><?php echo e($caseStage->new_stage); ?></b> on <b><?php echo e($caseStage->new_stage_date); ?></b>
+                                            </div>
+                                            <span class="badge bg-primary rounded-pill"></span>
+                                        </li>
+                                    
+                                    <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); if ($__empty_1): ?>
+                                        <div>
+                                            No activities yet for this Case.
+                                        </div>
+                                    <?php endif; ?>
+                                </ol>
                                 
                             </div>
                     </div>

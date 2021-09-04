@@ -3,16 +3,9 @@
 <main class="py-4">
     <div class="container">
         
-        <div class="row justify-content-center">
-            <div class="col-lg-12 row">
-    
-                 
                         <?php echo e(View('components.dashboard')); ?>
 
                         
-    
-            </div>
-        </div>
     </div>   
 </main>
 <?php $__env->stopSection(); ?>

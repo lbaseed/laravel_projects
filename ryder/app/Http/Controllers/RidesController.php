@@ -30,7 +30,7 @@ class RidesController extends Controller
             "rider_phone" => "required",
         ]);
         return Rides::create($request->all());
-    }
+    } 
 
     /**
      * Display the specified resource.

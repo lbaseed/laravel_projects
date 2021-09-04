@@ -15,9 +15,16 @@ class CaseController extends Controller
      */
     public function index()
     {
-        $cases = Cases::all();
+        $cases = Cases::orderBy('case_id','asc')->get();
 
-        return view("viewCases", ['cases' => $cases]);
+        return view("viewCases", ['cases' => $cases,'division'=>'ALL']);
+    }
+
+    public function divisionCases(Request $div){
+
+        $div["division"] == "ALL" ? $cases = Cases::orderBy('case_id', 'asc')->get() : $cases = Cases::where('division', $div["division"])->orderBy('case_id','asc')->get();
+
+        return view("viewCases", ['cases' => $cases, 'division' => $div["division"]]);
     }
 
     /**
@@ -40,8 +47,9 @@ class CaseController extends Controller
     public function show($id)
     {
         $case = Cases::find($id);
+        $caseStages = CaseStages::where('case_ref', $id)->orderBy('created_at','desc')->get();
 
-        return view("viewCase", ['case' => $case]);
+        return view("viewCase", ['case' => $case, 'caseStages' => $caseStages]);
     }
     public function edit($id)
     {
@@ -76,15 +84,26 @@ class CaseController extends Controller
         $case = Cases::find($id);
 
         //keep status change record
-
-        $caseStage = CaseStages::create([
-            'case_ref' => $case->id,
-            'case_id' => $case->case_id,
-            'prev_stage' => $case->current_stage,
-            'prev_stage_date' => $case->hearing_date,
-            'new_stage' => $fields["current_stage"],
-            'new_stage_date' => $fields["hearing_date"],
-        ]);
+        if($case->current_stage=='Fresh Filing'){
+            $caseStage = CaseStages::create([
+                'case_ref' => $case->id,
+                'case_id' => $case->case_id,
+                'prev_stage' => $case->current_stage,
+                'prev_stage_date' => $case->filing_date,
+                'new_stage' => $fields["current_stage"],
+                'new_stage_date' => $fields["hearing_date"],
+            ]);
+        }else{
+            $caseStage = CaseStages::create([
+                'case_ref' => $case->id,
+                'case_id' => $case->case_id,
+                'prev_stage' => $case->current_stage,
+                'prev_stage_date' => $case->hearing_date,
+                'new_stage' => $fields["current_stage"],
+                'new_stage_date' => $fields["hearing_date"],
+            ]);
+        }
+        
 
         $case->update($fields->all());
 

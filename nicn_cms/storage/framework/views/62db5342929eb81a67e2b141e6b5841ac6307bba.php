@@ -1,4 +1,4 @@
-<nav class="navbar navbar-top navbar-expand navbar-dark bg-primary border-bottom">
+<nav class="navbar navbar-top sticky-top navbar-expand navbar-dark bg-primary border-bottom">
     <div class="container-fluid">
       <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <!-- Search form -->
@@ -72,10 +72,16 @@
                 <span>Support</span>
               </a>
               <div class="dropdown-divider"></div>
-              <a href="<?php echo e(route('logout')); ?>" class="dropdown-item">
+              <a href="<?php echo e(route('logout')); ?>" class="dropdown-item" onclick="event.preventDefault();
+              document.getElementById('logout-form').submit();">
                 <i class="ni ni-user-run"></i>
                 <span>Logout</span>
               </a>
+
+              <form id="logout-form" action="<?php echo e(route('logout')); ?>" method="POST" class="d-none">
+                <?php echo csrf_field(); ?>
+              </form>
+
             </div>
           </li>
         </ul>

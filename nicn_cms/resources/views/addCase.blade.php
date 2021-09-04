@@ -31,7 +31,7 @@
                                                 <option >Select Division</option>
                                                 <option value="BAU">BAU</option>
                                                 <option value="GMB">GMB</option>
-                                                <option value="YLA">YLA</option>
+                                                <option value="YL">YL</option>
                                             </select>
                             
                                             @error('division')

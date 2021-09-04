@@ -10,10 +10,8 @@
 
                 <div class="col-md-12 col-sm-12">
                     <div class="card">
-                            <div class="card-header">{{ __('Case Profile') }}
-                                <a href="{{ url('/cases') }}" class="btn btn-outline-secondary ml-5 float-right">
-                                    {{ __('Back') }}
-                                </a>
+                            <div class="card-header"><h3>{{ __('Case Profile') }}</h3>
+                                
                             </div>
                             <div class="card-body p-0">
                             
@@ -64,10 +62,25 @@
 
                 <div class="col-md-12 col-sm-12">    
 
-                    <div class="card ml-3 mt-3">
-                            <div class="card-header">{{ __('Case life Cycle Activities') }}</div>
+                    <div class="card mt-3">
+                            <div class="card-header"><h3>{{ __('Case life Cycle Activities') }}</h3><small>Most recent first</small></div>
                             <div class="card-body">
-
+                                <ol class="list-group list-group-numbered">
+                                    @forelse ($caseStages as $caseStage)
+                                        <li class="list-group-item d-flex justify-content-between align-items-start">
+                                            <div class="ms-2 me-auto">
+                                            <div class="font-weight-bold">[{{ $caseStage->prev_stage_date }}]</div>
+                                                Case Stage Changed from <b>{{ $caseStage->prev_stage }}</b> on <b>{{ $caseStage->prev_stage_date }}</b> to Adjourned <b>{{ $caseStage->new_stage }}</b> on <b>{{ $caseStage->new_stage_date }}</b>
+                                            </div>
+                                            <span class="badge bg-primary rounded-pill"></span>
+                                        </li>
+                                    
+                                    @empty
+                                        <div>
+                                            No activities yet for this Case.
+                                        </div>
+                                    @endforelse
+                                </ol>
                                 
                             </div>
                     </div>
