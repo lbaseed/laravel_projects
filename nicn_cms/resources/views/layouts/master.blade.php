@@ -16,6 +16,8 @@
   <!-- Page plugins -->
   <!-- Argon CSS -->
   <link rel="stylesheet" href="{{URL::to('assets/css/argon.css?v=1.2.0')}}" type="text/css">
+  <link rel="stylesheet" href="https://cdn.datatables.net/1.11.1/css/dataTables.bootstrap5.min.css">
+
 </head>
 
 <body>
@@ -47,6 +49,8 @@
   <script src="{{URL::to('assets/vendor/chart.js/dist/Chart.min.js')}}"></script>
   <script src="{{URL::to('assets/vendor/chart.js/dist/Chart.extension.js')}}"></script>
   <script src="/assets/vendor/bootstrap-datepicker/dist/js/bootstrap-datepicker.min.js"></script>
+  <script src="https://cdn.datatables.net/1.11.1/js/jquery.dataTables.min.js"></script>
+  <script src="https://cdn.datatables.net/1.11.1/js/dataTables.bootstrap5.min.js"></script>
   <script>  
     $(".datepicker" ).datepicker({
         
@@ -63,6 +67,26 @@
         event.preventDefault();
         document.getElementById('division-cases').submit();
 
+    });
+
+    $(document).ready( function () {
+      // $('#casesTable').DataTable({
+      //   buttons: [
+      //   'copy', 'excel', 'pdf'
+      //   ]
+      // });
+
+      var table = $('#casesTable').DataTable();
+ 
+new $.fn.dataTable.Buttons( table, {
+    buttons: [
+        'copy', 'excel', 'pdf'
+    ]
+} );
+ 
+table.buttons().container()
+    .appendTo( $('.col-sm-6:eq(0)', table.table().container() ) );
+      
     });
 </script>
   <!-- Argon JS -->

@@ -48,6 +48,8 @@ Route::group(['middleware' => ['auth']], function () {
 // Filter cases
     Route::get('/cases', [App\Http\Controllers\CaseController::class, 'index']);
     Route::post('/cases', [App\Http\Controllers\CaseController::class, 'divisionCases']);
+// cases returnn
+    Route::get('/cases-return', [App\Http\Controllers\CaseController::class, 'casesReturn']);
 
 // search route
     Route::get('/search', [App\Http\Controllers\CaseController::class, 'searchCases']);

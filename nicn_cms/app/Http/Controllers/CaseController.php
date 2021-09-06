@@ -181,9 +181,9 @@ class CaseController extends Controller
         return $numCases;
     }
 
-    public static function cases($division){
-        $divCases = Cases::where('division', $division);
+    public static function casesReturn(){
+        $allCases = Cases::all();
 
-        return $divCases;
+        return view('casesReturn', ['allCases'=>$allCases]);
     }
 }

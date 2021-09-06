@@ -8,7 +8,7 @@
                 <div class="col">
                     <h5 class="card-title text-uppercase text-muted mb-0">Gombe Cases</h5>
                     <span class="h2 font-weight-bold mb-0">
-                        <?php echo e(App\Http\Controllers\CaseController::cases('GMB')); ?>
+                        <?php echo e(App\Http\Controllers\CaseController::casesQty('GMB')); ?>
 
                     </span>
                 </div>
@@ -32,7 +32,7 @@
                 <div class="col">
                     <h5 class="card-title text-uppercase text-muted mb-0">Bauchi Cases</h5>
                     <span class="h2 font-weight-bold mb-0">
-                        <?php echo e(App\Http\Controllers\CaseController::cases('BAU')); ?>
+                        <?php echo e(App\Http\Controllers\CaseController::casesQty('BAU')); ?>
 
                     </span>
                 </div>
@@ -56,7 +56,7 @@
                 <div class="col">
                     <h5 class="card-title text-uppercase text-muted mb-0">Yola Cases</h5>
                     <span class="h2 font-weight-bold mb-0">
-                        <?php echo e(App\Http\Controllers\CaseController::cases('YL')); ?>
+                        <?php echo e(App\Http\Controllers\CaseController::casesQty('YL')); ?>
 
 
                     </span>
