@@ -81,20 +81,20 @@
                 <th>REMARKS</th>
             </tr>
            
-                @foreach ($items as $case)
+                <?php $__currentLoopData = $items; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $case): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                     <tr>
-                        <td>{{ $loop->index +1 }}</td>
-                        <td>{{ $case->case_subject }}</td>
-                        <td>{{ $case->case_id }}</td>
-                        <td>{{ $case->filing_date }}</td>
-                        <td>{{ $case->assignment_date }}</td>
-                        <td>{{ $case->hearing_date }}</td>
-                        <td>{{ $case->adjournment_date }}</td>
+                        <td><?php echo e($loop->index +1); ?></td>
+                        <td><?php echo e($case->case_subject); ?></td>
+                        <td><?php echo e($case->case_id); ?></td>
+                        <td><?php echo e($case->filing_date); ?></td>
+                        <td><?php echo e($case->assignment_date); ?></td>
+                        <td><?php echo e($case->hearing_date); ?></td>
+                        <td><?php echo e($case->adjournment_date); ?></td>
                         <td> </td>
                         <td> </td>
                         <td> </td>
                     </tr>
-                @endforeach
+                <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
            
         
     </table>
@@ -119,4 +119,4 @@
     <div>
         N.B.  This form is to accompany form NJC/MCPJ/3c
     </div>
-</div>
+</div><?php /**PATH C:\Users\lbase\Documents\GitHub\laravel_projects\nicn_cms\resources\views/components/judgment.blade.php ENDPATH**/ ?>

@@ -39,7 +39,7 @@
 
 <div>
     
-    {{-- <watermarkimage src="{{ asset('assets/img/nicn-logo.png') }}" alpha="0.2" size="100,100" /> --}}
+    
 
     <div class="head" style="margin-bottom: 15px; ">
         <div style="font-size: 16px;">NATIONAL JUDICIAL COUNCIL</div>
@@ -200,4 +200,4 @@
             </div>
     </div>
 
-</div>
+</div><?php /**PATH C:\Users\lbase\Documents\GitHub\laravel_projects\nicn_cms\resources\views/components/dashboard.blade.php ENDPATH**/ ?>
