@@ -6,68 +6,75 @@
         <div class="row justify-content-center">
             <div class="col-lg-12 row">
     
-                <div class="col-md-12 col-sm-12">
+                <div class="col-md-6 col-sm-12">
                     <div class="card">
-                        <div class="card-header">{{ __('View All Cases') }} []</div>
-                            <div class="card-body">
+                        <div class="card-header">{{ __('Monthly Return of Cases') }}</div>
+                                <div class="card-body">
                                 <div class="col-md-6 mb-3">
-                                    <form id="division-cases" action="/cases" method="POST">
+                                    <form id="month" action="/cases" method="POST">
                                         @csrf
-                                        <select id="division" type="text" class="form-control" name="division">
-                                            <option value="">Select Division</option>
-                                            <option value="ALL">All Divisions</option>
-                                            <option value="BAU">BAU</option>
-                                            <option value="GMB">GMB</option>
-                                            <option value="YL">YL</option>
-                                        </select>
+
+                                        <div class="form-group row">
+                                            <div class="col-md-12">
+                                                <select id="division" type="text" class="form-control" name="division">
+                                                    <option value="">Select Month</option>
+                                                    <option value="1">January</option>
+                                                    <option value="2">February</option>
+                                                    <option value="3">March</option>
+                                                    <option value="4">April</option>
+                                                    <option value="5">May</option>
+                                                    <option value="6">June</option>
+                                                    <option value="7">July</option>
+                                                    <option value="8">August</option>
+                                                    <option value="9">September</option>
+                                                    <option value="10">October</option>
+                                                    <option value="11">November</option>
+                                                    <option value="12">December</option>
+                                                </select>
+                                            </div>
+                                        </div>
+
+                                        <button type="submit" class="btn btn-outline-primary">
+                                            {{ __('Generate Return') }}
+                                        </button>
                                       </form>
                                     
                                 </div>
-                                @if (count($allCases)>0)
-                                <div class="table-responsive">
-                                    <table class="table table-hover" id="casesTable">
-                                        <thead>
-                                            <tr>
-                                                <th>SN</th>
-                                                <th>Case ID</th>
-                                                <th>Parties</th>
-                                                <th>Case Subject</th>
-                                                <th>Division</th>
-                                            </tr>
-                                        </thead>
-                                        <tbody>    
-                                          
-                                        @foreach ($allCases as $case)
-                                        
-                                            <tr>
-                                                <td>{{ $loop->index + 1 }}</td>
-                                                <td><a href="/case/{{ $case->id }}"><b>{{ $case->case_id }}</b></a></td> 
-                                                <td>{{ $case->case_name }}</td>
-                                                <td>{{ $case->case_subject }}</td>
-                                                <td>{{ $case->division }}</td>
-                                            </tr>
-                                        
+                              
+                            
+                        </div>
+                    </div>
+                </div>
 
-                                          
-                                        @endforeach
-                                        </tbody>
-                                        <tfoot>
-                                            <tr>
-                                                <th>SN</th>
-                                                <th>Case ID</th>
-                                                <th>Parties</th>
-                                                <th>Case Subject</th>
-                                                <th>Division</th>
-                                            </tr>
-                                        </tfoot>
-                                    </table>
+                <div class="col-md-6 col-sm-12">
+                    <div class="card">
+                        <div class="card-header">{{ __('Quarterly Return off Cases') }} </div>
+                                <div class="card-body">
+                                <div class="col-md-6 mb-3">
+                                    <form id="quarter" action="/cases" method="POST">
+                                        @csrf
+                                        <div class="form-group row">
+                                            <div class="col-md-12">
+                                                <select id="division" type="text" class="form-control" name="division">
+                                                    <option value="">Select Quater</option>
+                                                    <option value="1">1st Quarter</option>
+                                                    <option value="4">2nd Quarter</option>
+                                                    <option value="7">3rd Quarter</option>
+                                                    <option value="10">4th Quarter</option>
+                                                </select>
+                                            </div>
+                                        </div>
+
+                                        <button type="submit" class="btn btn-outline-primary">
+                                            {{ __('Generate 1/4 Return') }}
+                                        </button>
+                                      </form>
+                                    
                                 </div>
-                                @else
-                                  No Record Found  
-                                @endif
+                                
                                
                             </div>
-                        </div>
+                        
                     </div>
                 </div>
     

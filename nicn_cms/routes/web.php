@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\CaseController;
 
 /*
 |--------------------------------------------------------------------------
@@ -43,19 +44,22 @@ Route::group(['middleware' => ['auth']], function () {
     Route::get('/home', [App\Http\Controllers\HomeController::class, 'index']);
     Route::get('/', [App\Http\Controllers\HomeController::class, 'index']);
 // add new case 
-    Route::get('/case-form', [App\Http\Controllers\CaseController::class, 'addCaseForm']);
-    Route::post('/case-form', [App\Http\Controllers\CaseController::class, 'addCase']);
+    Route::get('/case-form', [CaseController::class, 'addCaseForm']);
+    Route::post('/case-form', [CaseController::class, 'addCase']);
 // Filter cases
-    Route::get('/cases', [App\Http\Controllers\CaseController::class, 'index']);
-    Route::post('/cases', [App\Http\Controllers\CaseController::class, 'divisionCases']);
+    Route::get('/cases', [CaseController::class, 'index']);
+    Route::post('/cases', [CaseController::class, 'divisionCases']);
 // cases returnn
-    Route::get('/cases-return', [App\Http\Controllers\CaseController::class, 'casesReturn']);
+    Route::get('/cases-return', [CaseController::class, 'casesReturn']);
 
 // search route
-    Route::get('/search', [App\Http\Controllers\CaseController::class, 'searchCases']);
+    Route::get('/search', [CaseController::class, 'searchCases']);
 // Manage cases
-    Route::get('/case/{id}/edit', [App\Http\Controllers\CaseController::class, 'edit']);
-    Route::get('/case/{id}', [App\Http\Controllers\CaseController::class, 'show']);
-    Route::put('/case/{id}/edit', [App\Http\Controllers\CaseController::class, 'update']);
+    Route::get('/case/{id}/edit', [CaseController::class, 'edit']);
+    Route::get('/case/{id}', [CaseController::class, 'show']);
+    Route::put('/case/{id}/edit', [CaseController::class, 'update']);
+
+    // test pdf gen
+    Route::get("/pdf", [CaseController::class, 'generate']);
 
 });

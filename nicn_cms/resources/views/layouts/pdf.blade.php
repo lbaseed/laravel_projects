@@ -21,20 +21,13 @@
 </head>
 
 <body>
-  <!-- Sidenav -->
-  @include('navbars.sideNav')
-  
 
   <!-- Main content -->
   <div class="main-content" id="panel">
     
-    <!-- Topnav -->
-    @include('navbars.navbar')
-    <!-- Header -->
-    <!-- Header -->
+    
     @yield('content')
-  <!-- Footer -->
-  	@include('navbars.footer')
+  
   </div>
 	  
   

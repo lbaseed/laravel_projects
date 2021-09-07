@@ -25,7 +25,7 @@
                                 </div>
                                 @if (count($cases)>0)
                                 <div class="table-responsive">
-                                    <table class="table table-hover">
+                                    <table class="table table-hover" id="casesTable">
                                         <thead>
                                             <tr>
                                                 <th>SN</th>
