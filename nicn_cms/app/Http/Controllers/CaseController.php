@@ -194,7 +194,7 @@ class CaseController extends Controller
         $mpdf = new \Mpdf\Mpdf([
             'margin_left' => 10,
             'margin_right' => 10,
-            'margin_top' => 20,
+            'margin_top' => 15,
             'margin_bottom' => 10,
             'format' => 'A4-L',
         ]);
@@ -202,26 +202,28 @@ class CaseController extends Controller
 
         // $img = asset('/assets/img/nicn-logo.png');
         // image watermark
-        $mpdf->SetWatermarkImage(asset('/assets/img/nicn-logo.png'));
-        $mpdf->showWatermarkImage = true;
+        // $mpdf->SetWatermarkImage("http://192.168.110.159:8082/assets/img/nicn-logo.png");
+        // $mpdf->showWatermarkImage = true;
         //text watermark
-        // $mpdf->SetWatermarkText("NICN");
-        // $mpdf->showWatermarkText = true;
+        $mpdf->SetWatermarkText("NICN");
+        $mpdf->showWatermarkText = true;
         $mpdf->watermarkImageAlpha = 0.2;
 
         $html = \View::make('components.dashboard')->with('items',$items);
         $html->render();
         $mpdf->WriteHTML($html);
-        // $mpdf->AddPage();
+        $mpdf->AddPage();
+
         // judgements delivered
-        // $page2 = \View::make('components.judgment')->with('items',$items);
-        // $page2->render();
-        // $mpdf->WriteHTML($page2);
-        // $mpdf->AddPage();
-        // // ages of cases
-        // $page2 = \View::make('components.ages')->with('items',$items);
-        // $page2->render();
-        // $mpdf->WriteHTML($page2);
+        $page2 = \View::make('components.judgment')->with('items',$items);
+        $page2->render();
+        $mpdf->WriteHTML($page2);
+        $mpdf->AddPage();
+
+        // ages of cases
+        $page2 = \View::make('components.ages')->with('items',$items);
+        $page2->render();
+        $mpdf->WriteHTML($page2);
 
        
        return $mpdf->Output($fileName, "I");

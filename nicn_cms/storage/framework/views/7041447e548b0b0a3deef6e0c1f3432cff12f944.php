@@ -7,30 +7,30 @@
     
 }
 
-#customers {
+#nicn_tbl {
   font-family: Arial, Helvetica, sans-serif;
   border-collapse: collapse;
   width: 100%;
+  margin-bottom: 10px;
 }
 
-#customers td, #customers th {
+#nicn_tbl td, #nicn_tbl th {
   border: 0.5px solid #000;
   padding: 0px;
   text-align: center;
 }
 
-#customers tr:nth-child(even){background-color: #f2f2f2;}
-#customers tr:nth-child(2n+1){padding-bottom: 15px;}
+#nicn_tbl tr:nth-child(even){background-color: #f2f2f2;}
 
-#customers th {
+#nicn_tbl th {
   padding-top: 12px;
   padding-bottom: 0px;
   text-align: center;
-  background-color: #04AA6D;
+  background-color: #747A78;
   color: white;
 }
-#customers td {
-  height: 50px;
+#nicn_tbl td {
+  height: 40px;
   text-align: center;
   
 }
@@ -38,6 +38,7 @@
 </style>
 
 <div>
+    
     
 
     <div class="head" style="margin-bottom: 15px; ">
@@ -53,7 +54,7 @@
         </tr>
     </table>
 
-    <table cellspacing='0' id="customers">
+    <table cellspacing='0' id="nicn_tbl">
 
             <tr>
                 <th>Cases</th>
@@ -180,4 +181,23 @@
             </tr>
         
     </table>
-</div><?php /**PATH C:\Users\lbase\Documents\GitHub\laravel_projects\nicn_cms\resources\views/components/dashboard.blade.php ENDPATH**/ ?>
+
+    <div>* Total Number of Cases Disposed off During the Quarter, Column 7 above = Column 4 + 5.</div>
+    <div>** Cases Pending at the end of the Quarter, Column 8 above = Column 3 minus column 7.</div>
+
+    <div style="width: 100%; text-align: center; margin-top: 20px">
+            <div style="float: left; width: 45%">
+                <p>NAME OF JUDGE: Hon. Justice Mustapha Tijjani</p>
+                <p>JUDGE</p>
+                <p style="width: 50%; float: left;">Signature:........................</p> <p>Date:.......................</p>
+            </div>
+
+            <div style="float: right; width: 45%">
+                <b>CONFIRMED BY ME: PRESIDENT</b>
+                <p>NAME:  Hon. Justice B. B. Kanyip  (Phd)</p>
+                <p>PRESIDENT</p>
+                <p style="width: 50%; float: left;">Signature:........................</p> <p>Date:.......................</p>
+            </div>
+    </div>
+
+</div><?php /**PATH C:\www\laravel_projects\nicn_cms\resources\views/components/dashboard.blade.php ENDPATH**/ ?>

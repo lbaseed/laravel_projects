@@ -3,10 +3,41 @@
         text-align: center;
         font-size: 12px;
         font-weight: bold;
+    
+        
     }
     
-    </style>
+    #nicn_tbl {
+      font-family: Arial, Helvetica, sans-serif;
+      border-collapse: collapse;
+      width: 100%;
+      margin-bottom: 10px;
+      margin-top: 15px
+    }
     
+    #nicn_tbl td, #nicn_tbl th {
+      border: 0.5px solid #000;
+      padding: 0px;
+      text-align: center;
+    }
+    
+    #nicn_tbl tr:nth-child(even){background-color: #f2f2f2;}
+    
+    #nicn_tbl th {
+      padding-top: 12px;
+      padding-bottom: 0px;
+      text-align: center;
+      background-color: #747A78;
+      color: white;
+    }
+    #nicn_tbl td {
+      height: 40px;
+      text-align: center;
+      
+    }
+    
+</style>
+
     <div>
     
         <div class="head" style="margin-bottom: 15px">
@@ -21,31 +52,73 @@
                 <td style="text-align: right;"> COURT: NATIONAL INDUSTRIAL COURT OF NIGERIA </td>
             </tr>
         </table>
+
+        <div class="head">
+            RELATIVE AGES OF PENDING CASES <br>
+            AS AT BEGINNING OF 1ST JANUARY  - 31ST MARCH,  2021,  1ST  QUARTER 2021
+        </div>
     
-        <table cellspacing='0'>
+        <table cellspacing='0' id="nicn_tbl">
     
-            <thead>
-                <tr>
-                    <th>Case ID</th>
-                    <th>Subject Matter</th>
-                    <th>Filing Date</th>
-                    <th>Assignment Date</th>
-                    <th>Commencement Date</th>
-                </tr>
-            </thead>
-            <tbody>
-               
-                    @foreach ($items as $item)
-                        <tr>
-                            <td style="border: 0.5px solid;">{{ $item->case_id }}</td>
-                            <td style="border: 0.5px solid;">{{ $item->case_subject }}</td>
-                            <td style="border: 0.5px solid;">{{ $item->filing_date }}</td>
-                            <td style="border: 0.5px solid;">{{ $item->assignment_date }}</td>
-                            <td style="border: 0.5px solid;">{{ $item->hearing_date }}</td>
-    
-                        </tr>
-                    @endforeach
-                
-            </tbody>
+            <tr>
+                <th> </th>
+                <th>(A)</th>
+                <th>(B)</th>
+                <th>(C)</th>
+                <th>(D)</th>
+                <th>(E)</th>
+                <th colspan="3">(F)</th>
+                <th style="width: 17%;">(G)</th>
+            </tr>
+            <tr>
+                <th rowspan=2>S/NO</th>
+                <th rowspan=2>TYPE OF CASE</th>
+                <th rowspan=2 style="width: 14%">CASE NUMBER</th>
+                <th rowspan=2>DATE OF FILING</th>
+                <th rowspan=2>DATE OF ASSIGNMENT OF CASE</th>
+                <th rowspan=2>DATE OF COMMENCEMENT OF HEARING</th>
+
+                <th colspan="3" style="width: 20%">AGE OF CASE ( PRESENT DATE - E)</th>
+
+                <th rowspan=2>REMARKS<br> (STAGES/STATUS OF CASE)</th>
+            </tr>
+            <tr>
+                        <th> < 2yrs</th>
+                        <th> 2Yrs - 5Yrs</th>
+                        <th> >5Yrs </th>
+            </tr>
+            
+           
+                @foreach ($items as $case)
+                    <tr>
+                        <td>{{ $loop->index +1 }}</td>
+                        <td>{{ $case->case_subject }}</td>
+                        <td>{{ $case->case_id }}</td>
+                        <td>{{ $case->filing_date }}</td>
+                        <td>{{ $case->assignment_date }}</td>
+                        <td>{{ $case->hearing_date }}</td>
+                        <td>a </td>
+                        <td>b </td>
+                        <td>c </td>
+                        <td>{{ $case->current_stage }}</td>
+                    </tr>
+                @endforeach
+
         </table>
-    </div>
+    
+        <div style="width: 100%; text-align: center; margin-top: 20px">
+            <div style="float: left; width: 45%">
+                <p>NAME OF JUDGE: Hon. Justice Mustapha Tijjani</p>
+                <p>JUDGE</p>
+                <p style="width: 50%; float: left;">Signature:........................</p> <p>Date:.......................</p>
+            </div>
+
+            <div style="float: right; width: 45%">
+                <b>CONFIRMED BY ME: PRESIDENT</b>
+                <p>NAME:  Hon. Justice B. B. Kanyip  (Phd)</p>
+                <p>PRESIDENT</p>
+                <p style="width: 50%; float: left;">Signature:........................</p> <p>Date:.......................</p>
+            </div>
+        </div>
+
+</div>
