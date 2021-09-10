@@ -39,7 +39,7 @@
 
 <div>
     
-    {{-- <watermarkimage src="http://192.168.110.159:8082/assets/img/nicn-logo.png" alpha="0.2" size="100,100" /> --}}
+    {{-- <watermarkimage src="{{ asset('assets/img/nicn-logo.png') }}" alpha="0.2" size="100,100" /> --}}
 
     <div class="head" style="margin-bottom: 15px; ">
         <div style="font-size: 16px;">NATIONAL JUDICIAL COUNCIL</div>

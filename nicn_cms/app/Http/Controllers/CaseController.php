@@ -192,7 +192,7 @@ class CaseController extends Controller
         $mpdf = new \Mpdf\Mpdf([
             'margin_left' => 10,
             'margin_right' => 10,
-            'margin_top' => 15,
+            'margin_top' => 10,
             'margin_bottom' => 10,
             'format' => 'A4-L',
             'defaultheaderline' => 0,
