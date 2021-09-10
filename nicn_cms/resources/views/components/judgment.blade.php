@@ -51,7 +51,7 @@
             </tr>
         </table>
         <div class="head" style="margin-bottom: 15px">
-            DETAILS OF CONSIDERED JUDGMENTS DURING THE 1st QUARTER ENDED: MARCH 2021
+            DETAILS OF CONSIDERED JUDGMENTS DURING THE 1st QUARTER ENDED: {{ $period }}
         </div>
     
         <table cellspacing='0' id="nicn_tbl">
@@ -71,16 +71,16 @@
             <tr>
                 <th>S/NO</th>
                 <th>TYPE OF CASE</th>
-                <th>CASE NUMBER</th>
+                <th style="width: 13%">CASE NUMBER</th>
                 <th>DATE OF FILING</th>
                 <th>DATE OF ASSIGNMENT OF CASE</th>
-                <th>DATE OF COMMENCEMENT OF HEARING</th>
+                <th style="width: 13%">DATE OF COMMENCEMENT OF HEARING</th>
                 <th>DATE OF JUDGEMENT</th>
                 <th>DURATION ( G - F)</th>
                 <th>NO. OF WITNESSES</th>
                 <th>REMARKS</th>
             </tr>
-           
+           @if (count($items)>0)
                 @foreach ($items as $case)
                     <tr>
                         <td>{{ $loop->index +1 }}</td>
@@ -89,34 +89,54 @@
                         <td>{{ $case->filing_date }}</td>
                         <td>{{ $case->assignment_date }}</td>
                         <td>{{ $case->hearing_date }}</td>
-                        <td>{{ $case->adjournment_date }}</td>
+                        <td>{{ $case->termination_date }}</td>
+                        <td> 
+                            @php
+                                $hearingDate = Carbon\Carbon::parse($case->hearing_date); 
+                                $terminationDate = Carbon\Carbon::parse($case->termination_date);  
+                                $diff = $hearingDate->diffInDays($terminationDate);
+                                $yr = ($diff-($diff%365))/365;
+                                $mnth = ( ($diff%365) - ( ($diff%365) % 30) ) / 30;
+                                $day = ( ($diff%365) % 30);
+                                
+                                
+                            @endphp
+                            {{ $yr > 1 ? $yr.' Years' : $yr.' Year' }}
+                            {{ $mnth > 1 ? $mnth.' Months' : $mnth.' Month' }}
+                            {{ $day > 1 ? $day.' Days' : $day.' Day'}}
+                        </td>
                         <td> </td>
-                        <td> </td>
-                        <td> </td>
+                        <td> {{ $case->current_stage }}</td>
                     </tr>
                 @endforeach
-           
+            @else
+                    <tr>
+                        <td colspan="10">No judgement Delivered in this Quarter</td>
+                    </tr>
+           @endif
+
         
     </table>
+    <div style="page-break-inside:avoid !important; margin-top: {{ count($items) <= 7 ? '10px':'150px' }}">
+        <div>* Total Number of Cases Disposed off During the Quarter, Column 7 above = Column 4 + 5.</div>
+        <div>** Cases Pending at the end of the Quarter, Column 8 above = Column 3 minus column 7.</div>
 
-    <div>* Total Number of Cases Disposed off During the Quarter, Column 7 above = Column 4 + 5.</div>
-    <div>** Cases Pending at the end of the Quarter, Column 8 above = Column 3 minus column 7.</div>
+        <div style="width: 100%; text-align: center; margin-top: 20px">
+                <div style="float: left; width: 45%">
+                    <p>NAME OF JUDGE: Hon. Justice Mustapha Tijjani</p>
+                    <p>JUDGE</p>
+                    <p style="width: 50%; float: left;">Signature:........................</p> <p>Date:.......................</p>
+                </div>
 
-    <div style="width: 100%; text-align: center; margin-top: 20px">
-            <div style="float: left; width: 45%">
-                <p>NAME OF JUDGE: Hon. Justice Mustapha Tijjani</p>
-                <p>JUDGE</p>
-                <p style="width: 50%; float: left;">Signature:........................</p> <p>Date:.......................</p>
-            </div>
-
-            <div style="float: right; width: 45%">
-                <b>CONFIRMED BY ME: PRESIDENT</b>
-                <p>NAME:  Hon. Justice B. B. Kanyip  (Phd)</p>
-                <p>PRESIDENT</p>
-                <p style="width: 50%; float: left;">Signature:........................</p> <p>Date:.......................</p>
-            </div>
-    </div>
-    <div>
-        N.B.  This form is to accompany form NJC/MCPJ/3c
+                <div style="float: right; width: 45%">
+                    <b>CONFIRMED BY ME: PRESIDENT</b>
+                    <p>NAME:  Hon. Justice B. B. Kanyip  (Phd)</p>
+                    <p>PRESIDENT</p>
+                    <p style="width: 50%; float: left;">Signature:........................</p> <p>Date:.......................</p>
+                </div>
+        </div>
+        <div>
+            N.B.  This form is to accompany form NJC/MCPJ/3c
+        </div>
     </div>
 </div>

@@ -23,6 +23,8 @@ class CreateCasesTable extends Migration
             $table->date('filing_date');
             $table->date('assignment_date')->nullable();
             $table->date('hearing_date')->nullable();
+            $table->date('adjournment_date')->nullable();
+            $table->date('termination_date')->nullable();
             $table->string('current_stage')->nullable();
             $table->text('comment')->nullable();
             $table->integer('counsel')->nullable();

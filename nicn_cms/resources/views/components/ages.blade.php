@@ -44,7 +44,7 @@
             <div style="font-size: 16px;">NATIONAL JUDICIAL COUNCIL</div>
             <div>MONITORING COMMITTEE ON THE PERFORMANCE OF JUDICIAL OFFICERS</div>
             <div>OF SUPERIOR COURTS OF RECORD</div>
-            <div>QUARTERLY RETURN OF CASES FOR THE QUARTER ENDED: MARCH 2021</div>
+            <div>QUARTERLY RETURN OF CASES FOR THE QUARTER ENDED: {{ $period }}</div>
         </div>
         <table style="width: 100%; font-size: 10px; font-weight: bold; margin-bottom: 15px;">
             <tr>
@@ -67,46 +67,61 @@
                 <th>(C)</th>
                 <th>(D)</th>
                 <th>(E)</th>
-                <th colspan="3">(F)</th>
+                <th>(F)</th>
                 <th style="width: 17%;">(G)</th>
             </tr>
             <tr>
-                <th rowspan=2>S/NO</th>
-                <th rowspan=2>TYPE OF CASE</th>
-                <th rowspan=2 style="width: 14%">CASE NUMBER</th>
-                <th rowspan=2>DATE OF FILING</th>
-                <th rowspan=2>DATE OF ASSIGNMENT OF CASE</th>
-                <th rowspan=2>DATE OF COMMENCEMENT OF HEARING</th>
+                <th>S/NO</th>
+                <th>TYPE OF CASE</th>
+                <th style="width: 14%">CASE NUMBER</th>
+                <th>DATE OF FILING</th>
+                <th>DATE OF ASSIGNMENT OF CASE</th>
+                <th>DATE OF COMMENCEMENT OF HEARING</th>
 
-                <th colspan="3" style="width: 20%">AGE OF CASE ( PRESENT DATE - E)</th>
+                <th style="width: 20%">AGE OF CASE ( PRESENT DATE - E)</th>
 
-                <th rowspan=2>REMARKS<br> (STAGES/STATUS OF CASE)</th>
-            </tr>
-            <tr>
-                        <th> < 2yrs</th>
-                        <th> 2Yrs - 5Yrs</th>
-                        <th> >5Yrs </th>
+                <th>REMARKS<br> (STAGES/STATUS OF CASE)</th>
             </tr>
             
+            
            
-                @foreach ($items as $case)
-                    <tr>
-                        <td>{{ $loop->index +1 }}</td>
-                        <td>{{ $case->case_subject }}</td>
-                        <td>{{ $case->case_id }}</td>
-                        <td>{{ $case->filing_date }}</td>
-                        <td>{{ $case->assignment_date }}</td>
-                        <td>{{ $case->hearing_date }}</td>
-                        <td>a </td>
-                        <td>b </td>
-                        <td>c </td>
-                        <td>{{ $case->current_stage }}</td>
-                    </tr>
-                @endforeach
+                @if (count($items)>0)
+
+                    @foreach ($items as $case)
+                        <tr>
+                            <td>{{ $loop->index +1 }}</td>
+                            <td>{{ $case->case_subject }}</td>
+                            <td>{{ $case->case_id }}</td>
+                            <td>{{ $case->filing_date }}</td>
+                            <td>{{ $case->assignment_date }}</td>
+                            <td>{{ $case->hearing_date }}</td>
+                            <td>
+                            @php
+                                $hearingDate = Carbon\Carbon::parse($case->hearing_date); 
+                                $terminationDate = Carbon\Carbon::parse($case->termination_date);  
+                                $diff = $hearingDate->diffInDays($terminationDate);
+                                $yr = ($diff-($diff%365))/365;
+                                $mnth = ( ($diff%365) - ( ($diff%365) % 30) ) / 30;
+                                $day = ( ($diff%365) % 30);
+                                
+                                
+                            @endphp
+                            {{ $yr > 1 ? $yr.' Years' : $yr.' Year' }}
+                            {{ $mnth > 1 ? $mnth.' Months' : $mnth.' Month' }}
+                            {{ $day > 1 ? $day.' Days' : $day.' Day' }}    
+                            </td>
+                            
+                            <td>{{ $case->current_stage }}</td>
+                        </tr>
+                    @endforeach
+                    
+                @else
+                    No Record Found.
+                @endif
 
         </table>
     
-        <div style="width: 100%; text-align: center; margin-top: 20px">
+        <div style="width: 100%; text-align: center; margin-top: {{ count($items) <= 7 ? '10px':'150px' }}">
             <div style="float: left; width: 45%">
                 <p>NAME OF JUDGE: Hon. Justice Mustapha Tijjani</p>
                 <p>JUDGE</p>

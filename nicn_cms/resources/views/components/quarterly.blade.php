@@ -45,7 +45,7 @@
         <div style="font-size: 16px;">NATIONAL JUDICIAL COUNCIL</div>
         <div>MONITORING COMMITTEE ON THE PERFORMANCE OF JUDICIAL OFFICERS</div>
         <div>OF SUPERIOR COURTS OF RECORD</div>
-        <div>QUARTERLY RETURN OF CASES FOR THE QUARTER ENDED: MARCH 2021</div>
+        <div>QUARTERLY RETURN OF CASES FOR THE QUARTER ENDED: {{ $period }}</div>
     </div>
     <table style="width: 100%; font-size: 10px; font-weight: bold; margin-bottom: 15px;">
         <tr>
@@ -69,115 +69,103 @@
                 <th>9</th>
             </tr>
             <tr>
-                <th></th>
-                <th>CASES BROUGHT FORWARD FROM LAST QUARTER</th>
-                <th>CASES ASSIGNED THIS QUARTER</th>
-                <th>TOTAL OF 1 & 2</th>
-                <th>NO. OF CONTESTED CASES AND JUDGEMENTS GIVEN</th>
-                <th>NON-CONTESTED AND STRUCK OUT CASES</th>
-                
-                <th colspan='2' width='180px'>
-                    <table style="width:180px;">
-                    <tr style=" border: 0px; width:180px;">
-                        <th colspan="2" style=" border: 0px; border-bottom: 0.5px solid #000">
-                            DECISIONS ON INTERLOCUTORY PROCEEDINGS
-                        </th>
-                    </tr>
-                    <tr>
-                        <th style=" border: 0px; border-right: 0.5px solid #000; width: 50%">
-                            CONTESTED
-                        </th>
-                        <th style=" border: 0px; width: 85px">
-                            NON CONTESTED
-                        </th>
-                    </tr>
-                    </table>
-
+                <th rowspan="2"></th>
+                <th rowspan="2">CASES BROUGHT FORWARD FROM LAST QUARTER</th>
+                <th rowspan="2">CASES ASSIGNED THIS QUARTER</th>
+                <th rowspan="2">TOTAL OF 1 & 2</th>
+                <th rowspan="2">NO. OF CONTESTED CASES AND JUDGEMENTS GIVEN</th>
+                <th rowspan="2">NON-CONTESTED AND STRUCK OUT CASES</th>
+                <th colspan="2">
+                    DECISIONS ON INTERLOCUTORY PROCEEDINGS
                 </th>
-                        
-                <th>TOTAL NO. OF CASES DISPOSED OFF DURING THE QUARTER</th>
-                <th>CASES PENDING AT THE END OF THE QUARTER</th>
-                <th>REMARKS</th>
+                   
+                <th rowspan="2">TOTAL NO. OF CASES DISPOSED OFF DURING THE QUARTER</th>
+                <th rowspan="2">CASES PENDING AT THE END OF THE QUARTER</th>
+                <th rowspan="2">REMARKS</th>
+            </tr>
+            <tr>
+                <th>CONTESTED</th>
+                <th>NON CONTESTED</th>
             </tr>
            
-            
+                
             <tr>
                 <td>Civil</td>
-                <td> </td>
-                <td> </td>
-                <td> </td>
-                <td> </td>
-                <td> </td>
+                <td><b>{{ $items['broughtForward'] }} </b></td>
+                <td><b>{{ $items['assignedCases'] }} </b></td>
+                <td><b>{{ $items['totalCurrentCases'] }} </b></td>
+                <td><b>{{ $items['judgementDelivered'] }} </b></td>
+                <td><b>{{ $items['struckOut'] + $items['reAssigned'] }} </b></td>
                      
-                <td> </td>
-                <td> </td>
+                <td> - </td>
+                <td> - </td>
                         
-                <td> </td>
-                <td> </td>
+                <td><b>{{ $items['totalDisposedCases'] }} </b></td>
+                <td><b>{{ $items['totalCurrentCases'] - $items['totalDisposedCases'] }} </b></td>
                 <td> </td>
             </tr>
 
             <tr>
                 <td>Criminal</td>
-                <td> </td>
-                <td> </td>
-                <td> </td>
-                <td> </td>
-                <td> </td>
+                <td> <b>-</b> </td>
+                <td> <b>-</b> </td>
+                <td> <b>-</b> </td>
+                <td> <b>-</b> </td>
+                <td> <b>-</b> </td>
                      
-                <td> </td>
-                <td> </td>
+                <td> <b>-</b> </td>
+                <td> <b>-</b> </td>
                         
-                <td> </td>
-                <td> </td>
-                <td> </td>
+                <td> <b>-</b> </td>
+                <td> <b>-</b> </td>
+                <td> <b>-</b> </td>
             </tr>
 
             <tr>
                 <td>Motion</td>
-                <td> </td>
-                <td> </td>
-                <td> </td>
-                <td> </td>
-                <td> </td>
+                <td> <b>-</b> </td>
+                <td> <b>-</b> </td>
+                <td> <b>-</b> </td>
+                <td> <b>-</b> </td>
+                <td> <b>-</b> </td>
                      
-                <td> </td>
-                <td> </td>
+                <td> <b>-</b> </td>
+                <td> <b>-</b> </td>
                         
-                <td> </td>
-                <td> </td>
-                <td> </td>
+                <td> <b>-</b> </td>
+                <td> <b>-</b> </td>
+                <td> <b>-</b> </td>
             </tr>
 
             <tr>
                 <td>Fundamental Human Rights</td>
-                <td> </td>
-                <td> </td>
-                <td> </td>
-                <td> </td>
-                <td> </td>
+                <td> <b>-</b> </td>
+                <td> <b>-</b> </td>
+                <td> <b>-</b> </td>
+                <td> <b>-</b> </td>
+                <td> <b>-</b> </td>
                      
-                <td> </td>
-                <td> </td>
+                <td> <b>-</b> </td>
+                <td> <b>-</b> </td>
                         
-                <td> </td>
-                <td> </td>
-                <td> </td>
+                <td> <b>-</b> </td>
+                <td> <b>-</b> </td>
+                <td> <b>-</b> </td>
             </tr>
             <tr>
                 <td><b>Total</b></td>
-                <td> </td>
-                <td> </td>
-                <td> </td>
-                <td> </td>
-                <td> </td>
+                <td><b>{{ $items['broughtForward'] }} </b></td>
+                <td><b>{{ $items['assignedCases'] }} </b></td>
+                <td><b>{{ $items['totalCurrentCases'] }} </b></td>
+                <td><b>{{ $items['judgementDelivered'] }} </b></td>
+                <td><b>{{ $items['struckOut'] + $items['reAssigned'] }} </b></td>
                      
-                <td> </td>
-                <td> </td>
+                <td> <b>-</b> </td>
+                <td> <b>-</b> </td>
                         
-                <td> </td>
-                <td> </td>
-                <td> </td>
+                <td><b>{{ $items['totalDisposedCases'] }} </b></td>
+                <td><b>{{ $items['totalCurrentCases'] - $items['totalDisposedCases'] }} </b></td>
+                <td> <b>-</b> </td>
             </tr>
         
     </table>

@@ -13,20 +13,20 @@ class ModifyCasesAttr extends Migration
      */
     public function up()
     {
-        Schema::table('cases', function (Blueprint $table) {
-            $table->renameColumn('case_type', 'case_subject');
-        });
+        // Schema::table('cases', function (Blueprint $table) {
+        //     $table->renameColumn('case_type', 'case_subject');
+        // });
 
-        //add comments column
-        Schema::table('cases', function (Blueprint $table) {
-            $table->text('comments')->afer('current_stage')->nullable();
-        });
+        // //add comments column
+        // Schema::table('cases', function (Blueprint $table) {
+        //     $table->text('comments')->afer('current_stage')->nullable();
+        // });
 
-        Schema::table('cases', function (Blueprint $table) {
-            $table->date('assignment_date')->nullable()->change();
-            $table->date('hearing_date')->nullable()->change();
-            $table->string('current_stage')->nullable()->change();
-        });
+        // Schema::table('cases', function (Blueprint $table) {
+        //     $table->date('assignment_date')->nullable()->change();
+        //     $table->date('hearing_date')->nullable()->change();
+        //     $table->string('current_stage')->nullable()->change();
+        // });
     }
 
     /**

@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\models\Cases;
 use App\models\CaseStages;
 use Illuminate\Http\Request;
+use Carbon\Carbon;
 
 class CaseController extends Controller
 {
@@ -77,9 +78,6 @@ class CaseController extends Controller
             // 'division' => 'required',
             // 'filing_date' => 'required',
 
-            'hearing_date' => 'required',
-            'current_stage' => 'required',
-            'comments'=>'required'
         ]);
 
         $case = Cases::find($id);
@@ -186,8 +184,8 @@ class CaseController extends Controller
 
         return view('casesReturn', ['allCases'=>$allCases]);
     }
-
-    public function generate(){
+    
+    public function generate(Request $request){
 
         $fileName = "test_pdf.pdf";
 
@@ -197,36 +195,151 @@ class CaseController extends Controller
             'margin_top' => 15,
             'margin_bottom' => 10,
             'format' => 'A4-L',
+            'defaultheaderline' => 0,
         ]);
-        $items = Cases::all();
 
-        // $img = asset('/assets/img/nicn-logo.png');
-        // image watermark
-        // $mpdf->SetWatermarkImage("http://192.168.110.159:8082/assets/img/nicn-logo.png");
-        // $mpdf->showWatermarkImage = true;
-        //text watermark
-        $mpdf->SetWatermarkText("NICN");
-        $mpdf->showWatermarkText = true;
-        $mpdf->watermarkImageAlpha = 0.2;
+        $period = $request['period'];
+        $qtText=NULL;
+        $quarter = NULL;
+        switch($period){
+            case 1:
+                $quarter = ['start'=> '2021-01-01','end'=> '2021-03-31'];
+                $qtText = "1st QUARTER ENDED: MARCH".Date("Y", strtotime($quarter["start"]) );
+            break;
+            case 4:
+                $quarter = ['start'=> '2021-04-01','end'=> '2021-06-30'];
+                $qtText = "2nd QUARTER ENDED: JUNE".Date("Y", strtotime($quarter["start"]));
+            break;
+            case 7:
+                $quarter = ['start'=> '2021-07-01','end'=> '2021-09-30'];
+                $qtText = "3rd QUARTER ENDED: SEPTEMBER ".Date("Y", strtotime($quarter["start"]));
+            break;
+            case 10:
+                $quarter = ['start'=> '2021-10-01','end'=> '2021-12-31'];
+                $qtText = "4th QUARTER ENDED: DECEMBER ".Date("Y", strtotime($quarter["start"]));
+            break;
+        }
+        
+        if ($period) {
+            $assignedCases = self::assignedCases($quarter);
+            $broughtForward = self::casesBroughtForward($quarter);
+            $judgementDelivered = self::judgementDelivered($quarter);
+            $struckOut = self::struckOut($quarter);
+            $reAssigned = self::reAssigned($quarter);
+            $archived = self::archivedCases($quarter);
+            $pending = self::pendingCases($quarter);
 
-        $html = \View::make('components.dashboard')->with('items',$items);
-        $html->render();
-        $mpdf->WriteHTML($html);
-        $mpdf->AddPage();
+            $quarterly = [
+            'broughtForward' => count($broughtForward) - count($archived),
+            'assignedCases' => count($assignedCases),
+            'totalCurrentCases' => count($broughtForward) - count($archived) + count($assignedCases),
+            'judgementDelivered' => count($judgementDelivered),
+            'struckOut' => count($struckOut),
+            'reAssigned' => count($reAssigned),
+            'archived' => count($archived),
+            'totalDisposedCases' => count($judgementDelivered) + count($struckOut) + count($reAssigned),
+            
+        ];
 
-        // judgements delivered
-        $page2 = \View::make('components.judgment')->with('items',$items);
-        $page2->render();
-        $mpdf->WriteHTML($page2);
-        $mpdf->AddPage();
+            // $img = asset('/assets/img/nicn-logo.png');
+            // image watermark
+            // $mpdf->SetWatermarkImage("http://192.168.110.159:8082/assets/img/nicn-logo.png");
+            // $mpdf->showWatermarkImage = true;
 
-        // ages of cases
-        $page2 = \View::make('components.ages')->with('items',$items);
-        $page2->render();
-        $mpdf->WriteHTML($page2);
+            //text watermark
+            $mpdf->SetWatermarkText("NICN");
+            $mpdf->showWatermarkText = true;
+            $mpdf->watermarkImageAlpha = 0.2;
 
-       
-       return $mpdf->Output($fileName, "I");
+            $html = \View::make('components.quarterly', ['items'=>$quarterly, 'period' => $qtText]);
+            $html->render();
+            $mpdf->WriteHTML($html);
+            $mpdf->AddPage();
+
+            // judgements delivered
+
+            $page2 = \View::make('components.judgment', ['items'=>$judgementDelivered, 'period' => $qtText]);
+            $page2->render();
+            $mpdf->WriteHTML($page2);
+
+            $mpdf->SetHeader('NJC/MCPJ/5/(Panel)');
+
+            $mpdf->AddPage();
+
+            // ages of cases
+
+            $page3 = \View::make('components.ages', ['items'=>$pending, 'period' => $qtText]);
+            $page3->render();
+            $mpdf->WriteHTML($page3);
+
+            return $mpdf->Output($fileName, "I");
+
+        }
           
     }
+
+    // cases return preparation functions
+    public static function casesBroughtForward($range){
+
+        $cases = Cases::where('assignment_date', '<', $range['start'])
+            ->get();
+
+        return $cases;
+    }
+
+    public function judgementDelivered($range){
+        $cases = Cases::whereBetween('termination_date', [$range['start'], $range['end']])
+        ->Where('current_stage', '=', 'Judgement Delivered')
+        ->get();
+
+        return $cases;
+    }
+
+    public function struckOut($range){
+        $cases = Cases::whereBetween('termination_date', [$range['start'], $range['end']])
+        ->Where('current_stage', '=', 'Struck Out')
+        ->get();
+
+        return $cases;
+    }
+
+    public function reAssigned($range){
+        $cases = Cases::whereBetween('termination_date', [$range['start'], $range['end']])
+        ->Where('current_stage', '=', 'Re-Assigned')
+        ->get();
+
+        return $cases;
+    }
+
+    public function assignedCases($range){
+
+        $cases = Cases::whereBetween('assignment_date', [$range['start'], $range['end']])
+        ->get();
+
+        return $cases;
+    }
+
+    public function archivedCases($range){
+        $cases = Cases::where('termination_date', '<', $range["start"])
+            ->get();
+
+            return $cases;
+    }
+    
+    public function pendingCases($range){
+
+        $cases = Cases::where('current_stage', '<>', 'Judgement Delivered')
+            ->where('current_stage', '<>', 'Struck Out')
+            ->where('current_stage', '<>', 'Re-Assigned')
+            ->where('current_stage', '<>', 'Dismissed')
+            ->orwhere(function($query)  use($range){
+                $query->where('termination_date','>',$range["end"]);
+            })
+            ->get();
+
+        return $cases;
+
+    }
+
+
 }

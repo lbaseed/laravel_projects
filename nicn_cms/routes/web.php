@@ -60,6 +60,6 @@ Route::group(['middleware' => ['auth']], function () {
     Route::put('/case/{id}/edit', [CaseController::class, 'update']);
 
     // test pdf gen
-    Route::get("/pdf", [CaseController::class, 'generate']);
+    Route::post("/get-quarter", [CaseController::class, 'generate']);
 
 });

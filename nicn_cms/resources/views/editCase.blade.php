@@ -141,9 +141,23 @@
                                             @enderror
                                         </div>
                                     </div>
-                                    {{-- Adjournment --}}
+                                    {{-- COmmenecement date --}}
                                     <div class="form-group row">
-                                        <label for="adjournment" class="col-md-4 col-form-label text-md-right">{{ __('Case Adjournment') }}</label>
+                                        <label for="hearing_date" class="col-md-4 col-form-label text-md-right">{{ __('Case Commencement Date') }}</label>
+                            
+                                        <div class="col-md-6">
+                                            <input id="hearing_date" type="text" class="form-control datepicker @error('hearing_date') is-invalid @enderror" name="hearing_date"  value="{{ $case->hearing_date }}" {{ $case->assignment_date!=null ? 'disabled':'' }} autocomplete="off">
+                            
+                                            @error('hearing_date')
+                                                <span class="invalid-feedback" role="alert">
+                                                    <strong>{{ $message }}</strong>
+                                                </span>
+                                            @enderror
+                                        </div>
+                                    </div>
+                                    {{-- Adjournment stage --}}
+                                    <div class="form-group row">
+                                        <label for="adjournment" class="col-md-4 col-form-label text-md-right">{{ __('Case Stage') }}</label>
                             
                                         <div class="col-md-6">
                                             <input id="adjournment" type="text" class="form-control @error('adjournment') is-invalid @enderror" name="current_stage" value="{{ $case->current_stage }}" required autocomplete="off" placeholder="for hearing">
@@ -160,7 +174,7 @@
                                         <label for="adjournment_date" class="col-md-4 col-form-label text-md-right">{{ __('Case Adjournment Date') }}</label>
                             
                                         <div class="col-md-6">
-                                            <input id="adjournment_date" type="text" class="form-control datepicker @error('adjournment_date') is-invalid @enderror" name="hearing_date"  value="{{ $case->hearing_date }}" required autocomplete="off">
+                                            <input id="adjournment_date" type="text" class="form-control datepicker @error('adjournment_date') is-invalid @enderror" name="adjournment_date"  value="{{ $case->adjournment_date }}" required autocomplete="off">
                             
                                             @error('adjournment_date')
                                                 <span class="invalid-feedback" role="alert">

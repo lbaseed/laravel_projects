@@ -18,7 +18,10 @@ class Cases extends Model
         'filing_date',
         'assignment_date',
         'hearing_date',
+        'adjournment_date',
+        'termination_date',
         'division',
+        'counsel',
         'current_stage',
         'comments'
     ];
