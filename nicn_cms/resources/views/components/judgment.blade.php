@@ -26,7 +26,7 @@
       padding-top: 12px;
       padding-bottom: 0px;
       text-align: center;
-      background-color: #19610a;
+      background-color: #747A78;
       color: white;
     }
     #nicn_tbl td {
@@ -51,7 +51,7 @@
             </tr>
         </table>
         <div class="head" style="margin-bottom: 15px">
-            DETAILS OF CONSIDERED JUDGMENTS DURING THE 1st QUARTER ENDED: {{ $period }}
+            DETAILS OF CONSIDERED JUDGMENTS DURING THE QUARTER: {{ $period }}
         </div>
     
         <table cellspacing='0' id="nicn_tbl">
@@ -98,8 +98,6 @@
                                 $yr = ($diff-($diff%365))/365;
                                 $mnth = ( ($diff%365) - ( ($diff%365) % 30) ) / 30;
                                 $day = ( ($diff%365) % 30);
-                                
-                                
                             @endphp
                             {{ $yr > 1 ? $yr.' Years' : $yr.' Year' }}
                             {{ $mnth > 1 ? $mnth.' Months' : $mnth.' Month' }}
@@ -125,14 +123,14 @@
                 <div style="float: left; width: 45%">
                     <p>NAME OF JUDGE: Hon. Justice Mustapha Tijjani</p>
                     <p>JUDGE</p>
-                    <p style="width: 50%; float: left;">Signature:........................</p> <p>Date:.......................</p>
+                    <p style="width: 50%; float: left;">Signature:........................</p> <p>Date: {{ Date("d/m/Y") }}</p>
                 </div>
 
                 <div style="float: right; width: 45%">
                     <b>CONFIRMED BY ME: PRESIDENT</b>
                     <p>NAME:  Hon. Justice B. B. Kanyip  (Phd)</p>
                     <p>PRESIDENT</p>
-                    <p style="width: 50%; float: left;">Signature:........................</p> <p>Date:.......................</p>
+                    <p style="width: 50%; float: left;">Signature:........................</p> <p>Date: {{ Date("d/m/Y") }}</p>
                 </div>
         </div>
         <div>

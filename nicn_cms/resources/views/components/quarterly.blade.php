@@ -45,7 +45,7 @@
         <div style="font-size: 16px;">NATIONAL JUDICIAL COUNCIL</div>
         <div>MONITORING COMMITTEE ON THE PERFORMANCE OF JUDICIAL OFFICERS</div>
         <div>OF SUPERIOR COURTS OF RECORD</div>
-        <div>QUARTERLY RETURN OF CASES FOR THE QUARTER ENDED: {{ $period }}</div>
+        <div>QUARTERLY RETURN OF CASES FOR THE QUARTER: {{ $period }}</div>
     </div>
     <table style="width: 100%; font-size: 10px; font-weight: bold; margin-bottom: 15px;">
         <tr>
@@ -177,14 +177,14 @@
             <div style="float: left; width: 45%">
                 <p>NAME OF JUDGE: Hon. Justice Mustapha Tijjani</p>
                 <p>JUDGE</p>
-                <p style="width: 50%; float: left;">Signature:........................</p> <p>Date:.......................</p>
+                <p style="width: 50%; float: left;">Signature:........................</p> <p>Date: {{ Date("d/m/Y") }}</p>
             </div>
 
             <div style="float: right; width: 45%">
                 <b>CONFIRMED BY ME: PRESIDENT</b>
                 <p>NAME:  Hon. Justice B. B. Kanyip  (Phd)</p>
                 <p>PRESIDENT</p>
-                <p style="width: 50%; float: left;">Signature:........................</p> <p>Date:.......................</p>
+                <p style="width: 50%; float: left;">Signature:........................</p> <p>Date: {{ Date("d/m/Y") }}</p>
             </div>
     </div>
 

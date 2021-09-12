@@ -30,7 +30,7 @@
               </a>
             </li>
             <li class="nav-item">
-              <a class="nav-link {{ activeMenu('terminate-case') }}" href="{{ url('#') }}">
+              <a class="nav-link {{ activeMenu('archive-case') }}" href="{{ url('archive-case') }}">
                 <i class="ni ni-briefcase-24  text-primary"></i>
                 <span class="nav-link-text">Archive Case</span>
               </a>

@@ -11,7 +11,7 @@
                         <div class="card-header"><?php echo e(__('Quarterly Return off Cases')); ?> </div>
                                 <div class="card-body">
                                 <div class="col-md-6 mb-3">
-                                    <form id="quarter" action="/get-quarter" method="POST">
+                                    <form id="quarter" action="/get-quarter" target="_blank" method="POST">
                                         <?php echo csrf_field(); ?>
                                         <div class="form-group row">
                                             <div class="col-md-12">
@@ -31,9 +31,6 @@
                                       </button>
                                       </form>
                                       
-                                        <a href="" target="_blank" id="testLnk">
-                                            Print
-                                        </a>
                                 </div>
                                 
                                

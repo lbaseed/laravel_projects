@@ -51,7 +51,7 @@
             </tr>
         </table>
         <div class="head" style="margin-bottom: 15px">
-            DETAILS OF CONSIDERED JUDGMENTS DURING THE 1st QUARTER ENDED: <?php echo e($period); ?>
+            DETAILS OF CONSIDERED JUDGMENTS DURING THE QUARTER: <?php echo e($period); ?>
 
         </div>
     
@@ -99,8 +99,6 @@
                                 $yr = ($diff-($diff%365))/365;
                                 $mnth = ( ($diff%365) - ( ($diff%365) % 30) ) / 30;
                                 $day = ( ($diff%365) % 30);
-                                
-                                
                             ?>
                             <?php echo e($yr > 1 ? $yr.' Years' : $yr.' Year'); ?>
 
@@ -129,14 +127,14 @@
                 <div style="float: left; width: 45%">
                     <p>NAME OF JUDGE: Hon. Justice Mustapha Tijjani</p>
                     <p>JUDGE</p>
-                    <p style="width: 50%; float: left;">Signature:........................</p> <p>Date:.......................</p>
+                    <p style="width: 50%; float: left;">Signature:........................</p> <p>Date: <?php echo e(Date("d/m/Y")); ?></p>
                 </div>
 
                 <div style="float: right; width: 45%">
                     <b>CONFIRMED BY ME: PRESIDENT</b>
                     <p>NAME:  Hon. Justice B. B. Kanyip  (Phd)</p>
                     <p>PRESIDENT</p>
-                    <p style="width: 50%; float: left;">Signature:........................</p> <p>Date:.......................</p>
+                    <p style="width: 50%; float: left;">Signature:........................</p> <p>Date: <?php echo e(Date("d/m/Y")); ?></p>
                 </div>
         </div>
         <div>

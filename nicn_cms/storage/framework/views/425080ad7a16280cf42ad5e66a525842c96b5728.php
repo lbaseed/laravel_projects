@@ -30,7 +30,7 @@
               </a>
             </li>
             <li class="nav-item">
-              <a class="nav-link <?php echo e(activeMenu('terminate-case')); ?>" href="<?php echo e(url('#')); ?>">
+              <a class="nav-link <?php echo e(activeMenu('archive-case')); ?>" href="<?php echo e(url('archive-case')); ?>">
                 <i class="ni ni-briefcase-24  text-primary"></i>
                 <span class="nav-link-text">Archive Case</span>
               </a>

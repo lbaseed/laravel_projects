@@ -341,5 +341,13 @@ class CaseController extends Controller
 
     }
 
+    public function archive(){
+
+        return view("archive");
+    }
+
+    public function archiveUpdate(Request $request){
+
+    }
 
 }
