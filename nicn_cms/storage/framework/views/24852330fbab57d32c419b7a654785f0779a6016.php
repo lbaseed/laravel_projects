@@ -14,18 +14,7 @@
                                 <form method="POST" action="/case/<?php echo e($case->id); ?>/edit">
                                     <?php echo csrf_field(); ?>
                                     <?php echo method_field('PUT'); ?>
-                                    <?php if(session('success')): ?>
-                                        <div class="alert alert-success">
-                                            <?php echo e(session('success')); ?>
-
-                                        </div>
-                                    <?php endif; ?>
-                                    <?php if(session('error')): ?>
-                                        <div class="alert alert-danger">
-                                            <?php echo e(session('error')); ?>
-
-                                        </div>
-                                    <?php endif; ?>
+                                    
                                     
                                     <div class="form-group row">
                                         <label for="division" class="col-md-4 col-form-label text-md-right"><?php echo e(__('Division')); ?></label>
@@ -300,7 +289,7 @@ unset($__errorArgs, $__bag); ?>" name="current_stage" value="<?php echo e(old('a
                                                 <option >Select New Case Stage</option>
                                                 <?php if(count($stageTypes)>0): ?>
                                                     <?php $__currentLoopData = $stageTypes; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $item): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
-                                                        <option value="<?php echo e($item->id); ?>"><?php echo e($item->stage_name); ?></option>
+                                                        <option value="<?php echo e($item->stage_name); ?>"><?php echo e($item->stage_name); ?></option>
                                                     <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                                                 <?php endif; ?>
                                             </select>
@@ -403,4 +392,4 @@ unset($__errorArgs, $__bag); ?>
 
 
 
-<?php echo $__env->make('layouts.master', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?><?php /**PATH C:\www\laravel_projects\nicn_cms\resources\views/editCase.blade.php ENDPATH**/ ?>
+<?php echo $__env->make('layouts.master', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?><?php /**PATH C:\Users\lbase\Documents\GitHub\nicn_cms\resources\views/editCase.blade.php ENDPATH**/ ?>

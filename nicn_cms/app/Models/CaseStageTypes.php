@@ -8,8 +8,8 @@ use Illuminate\Database\Eloquent\Model;
 class CaseStageTypes extends Model
 {
     use HasFactory;
- 
-   protected $fillable = [
+    protected $table="case_stage_types";
+    protected $fillable = [
         'stage_name',
         'stage_type', //life cycle stage or termination stage
     ];

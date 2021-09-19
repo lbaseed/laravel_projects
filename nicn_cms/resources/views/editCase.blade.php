@@ -14,16 +14,7 @@
                                 <form method="POST" action="/case/{{ $case->id }}/edit">
                                     @csrf
                                     @method('PUT')
-                                    @if(session('success'))
-                                        <div class="alert alert-success">
-                                            {{ session('success') }}
-                                        </div>
-                                    @endif
-                                    @if(session('error'))
-                                        <div class="alert alert-danger">
-                                            {{ session('error') }}
-                                        </div>
-                                    @endif
+                                    {{-- {{ Auth::user()->file_number }} --}}
                                     {{-- division --}}
                                     <div class="form-group row">
                                         <label for="division" class="col-md-4 col-form-label text-md-right">{{ __('Division') }}</label>
@@ -165,7 +156,7 @@
                                                 <option >Select New Case Stage</option>
                                                 @if (count($stageTypes)>0)
                                                     @foreach ($stageTypes as $item)
-                                                        <option value="{{ $item->id }}">{{ $item->stage_name }}</option>
+                                                        <option value="{{ $item->stage_name }}">{{ $item->stage_name }}</option>
                                                     @endforeach
                                                 @endif
                                             </select>
@@ -195,7 +186,7 @@
                                         <label for="comments" class="col-md-4 col-form-label text-md-right">{{ __('Adjournment Comments') }}</label>
                             
                                         <div class="col-md-6">
-                                            <textarea id="comments" type="comments" class="form-control @error('comments') is-invalid @enderror" name="comments" value="{{ $case->comments }}" required autocomplete="off" placeholder="{{ $case->comments }}"></textarea>
+                                            <textarea id="comments" type="comments" class="form-control @error('comments') is-invalid @enderror" name="comment" required autocomplete="off" placeholder="{{ $case->comment }}"></textarea>
                             
                                             @error('comments')
                                                 <span class="invalid-feedback" role="alert">

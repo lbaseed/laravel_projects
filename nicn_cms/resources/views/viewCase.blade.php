@@ -14,7 +14,16 @@
                                 
                             </div>
                             <div class="card-body p-0">
-                            
+                                    @if(session('success'))
+                                        <div class="alert alert-success">
+                                            {{ session('success') }}
+                                        </div>
+                                    @endif
+                                    @if(session('error'))
+                                        <div class="alert alert-danger">
+                                            {{ session('error') }}
+                                        </div>
+                                    @endif
                                 @if ($case)
                                 <div class="table-responsive">
                                     <table class="table table-hover table-striped">
@@ -42,7 +51,7 @@
                                             </tr><tr>
                                                 <td><b>Adjournment Date</b></td> <td>{{ $case->hearing_date }}</td>
                                             </tr><tr>
-                                                <td><b>Comments</b></td> <td>{{ $case->comments }}</td>
+                                                <td><b>Comments</b></td> <td>{{ $case->comment }}</td>
                                             </tr>
                                         
                                         </tbody>
@@ -70,7 +79,7 @@
                                         <li class="list-group-item d-flex justify-content-between align-items-start">
                                             <div class="ms-2 me-auto">
                                             <div class="font-weight-bold">[{{ $caseStage->prev_stage_date }}]</div>
-                                                Case Stage Changed from <b>{{ $caseStage->prev_stage }}</b> on <b>{{ $caseStage->prev_stage_date }}</b> to Adjourned <b>{{ $caseStage->new_stage }}</b> on <b>{{ $caseStage->new_stage_date }}</b>
+                                                Case Stage Changed from <b>{{ $caseStage->prev_stage }}</b> on <b>{{ $caseStage->prev_stage_date }}</b> to <b>{{ $caseStage->new_stage }}</b> on <b>{{ $caseStage->new_stage_date }}</b>
                                             </div>
                                             <span class="badge bg-primary rounded-pill"></span>
                                         </li>

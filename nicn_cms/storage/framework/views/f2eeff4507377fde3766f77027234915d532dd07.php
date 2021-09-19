@@ -155,4 +155,4 @@ unset($__errorArgs, $__bag); ?>
 
 </body>
 </html>
-<?php /**PATH C:\www\laravel_projects\nicn_cms\resources\views/auth/login.blade.php ENDPATH**/ ?>
+<?php /**PATH C:\Users\lbase\Documents\GitHub\nicn_cms\resources\views/auth/login.blade.php ENDPATH**/ ?>

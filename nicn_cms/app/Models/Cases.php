@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class Cases extends Model
 {
     use HasFactory;
-
+    protected $table="cases";
     protected $fillable = [
         'case_id',
         'case_name',
@@ -24,6 +24,7 @@ class Cases extends Model
         'division',
         'counsel',
         'current_stage',
-        'comments'
+        'comment',
+        'curr_user'
     ];
 }

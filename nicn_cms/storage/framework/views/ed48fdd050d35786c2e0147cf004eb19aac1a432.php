@@ -1,12 +1,13 @@
               <!--
-                {{ $myId = Auth::user()->id }}
+                <?php echo e($myId = Auth::user()->id); ?>
+
               --> 
 <nav class="navbar navbar-top sticky-top navbar-expand navbar-dark bg-primary border-bottom">
     <div class="container-fluid">
       <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <!-- Search form -->
         <form class="navbar-search navbar-search-light form-inline mr-sm-3" method="GET" action="/search" id="navbar-search-main">
-          @csrf
+          <?php echo csrf_field(); ?>
           <div class="form-group mb-0">
             <div class="input-group input-group-alternative input-group-merge">
               <div class="input-group-prepend">
@@ -40,7 +41,7 @@
           </li>
 
         </ul>
-        {{-- User action buttons --}}
+        
         <ul class="navbar-nav align-items-center  ml-auto ml-md-0 ">
           <li class="nav-item dropdown">
             <a class="nav-link pr-0" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -51,7 +52,7 @@
                 </span>
               -->
                 <div class="media-body  ml-2  d-none d-lg-block">
-                  <span class="mb-0 text-sm  font-weight-bold">{{ Auth::user()->name }}</span>
+                  <span class="mb-0 text-sm  font-weight-bold"><?php echo e(Auth::user()->name); ?></span>
                 </div>
               </div>
             </a>
@@ -59,11 +60,11 @@
               <div class="dropdown-header noti-title">
                 <h6 class="text-overflow m-0">Welcome!</h6>
               </div>
-              <a href="{{ url("/system-user/{$myId}") }}" class="dropdown-item">
+              <a href="<?php echo e(url("/system-user/{$myId}")); ?>" class="dropdown-item">
                 <i class="ni ni-single-02"></i>
                 <span>My profile</span>
               </a>
-              <a href="{{ url("/settings") }}" class="dropdown-item">
+              <a href="<?php echo e(url("/settings")); ?>" class="dropdown-item">
                 <i class="ni ni-settings-gear-65"></i>
                 <span>Settings</span>
               </a>
@@ -76,14 +77,14 @@
                 <span>Support</span>
               </a>
               <div class="dropdown-divider"></div>
-              <a href="{{ route('logout') }}" class="dropdown-item" onclick="event.preventDefault();
+              <a href="<?php echo e(route('logout')); ?>" class="dropdown-item" onclick="event.preventDefault();
               document.getElementById('logout-form').submit();">
                 <i class="ni ni-user-run"></i>
                 <span>Logout</span>
               </a>
 
-              <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
-                @csrf
+              <form id="logout-form" action="<?php echo e(route('logout')); ?>" method="POST" class="d-none">
+                <?php echo csrf_field(); ?>
               </form>
 
             </div>
@@ -91,4 +92,4 @@
         </ul>
       </div>
     </div>
-  </nav>
+  </nav><?php /**PATH C:\Users\lbase\Documents\GitHub\nicn_cms\resources\views/navbars/navbar.blade.php ENDPATH**/ ?>

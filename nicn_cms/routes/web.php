@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\CaseController;
 use App\Http\Controllers\SettingsController;
+use App\Http\Controllers\UsersController;
 
 /*
 |--------------------------------------------------------------------------
@@ -15,14 +16,14 @@ use App\Http\Controllers\SettingsController;
 |
  */
 
-function activeMenu($uri = '')
-{
-    $active = '';
-    if (Request::is(Request::segment(1) . '/' . $uri . '/*') || Request::is(Request::segment(1) . '/' . $uri) || Request::is($uri)) {
-        $active = 'active';
-    }
-    return $active;
-}
+// function activeMenu($uri = '')
+// {
+//     $active = '';
+//     if (Request::is(Request::segment(1) . '/' . $uri . '/*') || Request::is(Request::segment(1) . '/' . $uri) || Request::is($uri)) {
+//         $active = 'active';
+//     }
+//     return $active;
+// }
 
 Route::get('/', function () {
     return view('login');
@@ -74,4 +75,9 @@ Route::group(['middleware' => ['auth']], function () {
     Route::post("/create-complaint-form", [SettingsController::class, 'createComplaintForm']);
     Route::post("/create-stage", [SettingsController::class, 'createCaseStage']);
 
+// Manage Users Route
+    Route::get("/system-users", [UsersController::class, "index"]);
+    Route::post("/system-users", [UsersController::class, "store"]);
+    Route::get("/system-user/{id}", [UsersController::class, "show"]);
+ 
 });

@@ -43,14 +43,18 @@
                 </a>
             </li>
             <li class="nav-item">
-              <a class="nav-link " href="<?php echo e(url('profile')); ?>">
+              <!--
+                <?php echo e($myId = Auth::user()->id); ?>
+
+              -->
+              <a class="nav-link " href="<?php echo e(url("/system-user/{$myId}")); ?>">
                 <i class="ni ni-single-02 text-primary"></i>
                 <span class="nav-link-text">Profile</span>
               </a>
             </li>
             
             <li class="nav-item">
-              <a class="nav-link " href="<?php echo e(url('settings')); ?>">
+              <a class="nav-link " href="<?php echo e(url('/system-users')); ?>">
                 <i class="ni ni-key-25 text-primary"></i>
                 <span class="nav-link-text">Manage Users</span>
               </a>
@@ -100,4 +104,4 @@
         </div>
       </div>
     </div>
-  </nav><?php /**PATH C:\www\laravel_projects\nicn_cms\resources\views/navbars/sideNav.blade.php ENDPATH**/ ?>
+  </nav><?php /**PATH C:\Users\lbase\Documents\GitHub\nicn_cms\resources\views/navbars/sideNav.blade.php ENDPATH**/ ?>

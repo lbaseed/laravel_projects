@@ -102,7 +102,7 @@ class SettingsController extends Controller
         $forms = ComplaintForms::all();
 
         return $forms;
-    }
+    } 
 
     public function createCaseStage(Request $request){
 
@@ -127,7 +127,7 @@ class SettingsController extends Controller
 
     }
 
-    function activeMenu($uri = '')
+    public static function activeMenu($uri = '')
     {
         $active = '';
         if (Request::is(Request::segment(1) . '/' . $uri . '/*') || Request::is(Request::segment(1) . '/' . $uri) || Request::is($uri)) {

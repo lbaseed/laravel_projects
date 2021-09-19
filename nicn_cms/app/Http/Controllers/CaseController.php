@@ -2,11 +2,13 @@
 
 namespace App\Http\Controllers;
 
-use App\models\Cases;
-use App\models\CaseStages;
-use App\Http\Controllers\SettingsController;
+use App\Models\Cases;
+use App\Models\CaseStages;
+use App\Models\CaseArchive;
 use Illuminate\Http\Request;
+use App\Http\Controllers\SettingsController;
 use Carbon\Carbon;
+use Illuminate\Support\Facades\Auth;
 
 class CaseController extends Controller
 {
@@ -71,16 +73,6 @@ class CaseController extends Controller
      */
     public function update(Request $fields, $id)
     {
-        $fields->validate([
-            // 'case_id' => 'required',
-            // 'case_name' => 'required',
-            // 'case_subject' => 'required',
-            // 'claimant' => 'required',
-            // 'defendant' => 'required',
-            // 'division' => 'required',
-            // 'filing_date' => 'required',
-
-        ]);
 
         $case = Cases::find($id);
 
@@ -92,7 +84,8 @@ class CaseController extends Controller
                 'prev_stage' => $case->current_stage,
                 'prev_stage_date' => $case->filing_date,
                 'new_stage' => $fields["current_stage"],
-                'new_stage_date' => $fields["hearing_date"],
+                'new_stage_date' => $fields["adjournment_date"],
+                'curr_user'=> Auth::user()->file_number,
             ]);
         }else{
             $caseStage = CaseStages::create([
@@ -101,14 +94,18 @@ class CaseController extends Controller
                 'prev_stage' => $case->current_stage,
                 'prev_stage_date' => $case->hearing_date,
                 'new_stage' => $fields["current_stage"],
-                'new_stage_date' => $fields["hearing_date"],
+                'new_stage_date' => $fields["adjournment_date"],
+                'curr_user'=> Auth::user()->file_number,
             ]);
         }
         
 
         $case->update($fields->all());
+        $case->update([
+            'curr_user'=> Auth::user()->file_number
+        ]);
 
-        return $case ? redirect()->back()->withSuccess("Updated Successfully!") : redirect()->back()->withError("Failed to Update");
+        return $case ? redirect("/case/{$id}")->withSuccess("Updated Successfully!") : redirect()->back()->withError("Failed to Update");
 
     }
 
@@ -141,7 +138,7 @@ class CaseController extends Controller
             'defendant' => 'required',
             'division' => 'required',
             'filing_date' => 'required',
-            'complaint_form' => 'reuired',
+            'complaint_form' => 'required',
         ]);
 
         $insert = Cases::create([
@@ -154,6 +151,7 @@ class CaseController extends Controller
             'current_stage' => "Fresh Filing",
             'division' => $fields["division"],
             'complaint_form' => $fields['complaint_form'],
+            'curr_user' => Auth::user()->file_number,
         ]);
 
         //insert Case Stage
@@ -164,9 +162,10 @@ class CaseController extends Controller
             'prev_stage_date' => $insert->filing_date,
             'new_stage' => $insert->current_stage,
             'new_stage_date' => $insert->filing_date,
+            'curr_user' =>Auth::user()->file_number,
         ]);
 
-        return $insert ? redirect()->back()->withSuccess("Case Added Successfully") : redirect()->back()->withError("Failed to Add");
+        return $insert ? redirect()->back()->withSuccess("Case Filed Successfully") : redirect()->back()->withError("Failed to Add");
     }
 
     public function searchCases(Request $field){
@@ -180,20 +179,21 @@ class CaseController extends Controller
     }
 
     public static function casesQty($division){
-        $numCases = Cases::where('division', $division)->count();
+        $numCases = Cases::where('division', $division)
+        ->where('termination_date','=',null)
+        ->count();
 
         return $numCases;
     }
 
     public static function casesReturn(){
-        $allCases = Cases::all();
-
-        return view('casesReturn', ['allCases'=>$allCases]);
+        
+        return view('casesReturn');
     }
     
     public function generate(Request $request){
 
-        $fileName = "test_pdf.pdf";
+        
 
         $mpdf = new \Mpdf\Mpdf([
             'margin_left' => 10,
@@ -205,6 +205,7 @@ class CaseController extends Controller
         ]);
 
         $period = $request['period'];
+        
         $qtText=NULL;
         $quarter = NULL;
         switch($period){
@@ -225,7 +226,7 @@ class CaseController extends Controller
                 $qtText = "4th QUARTER ENDED: DECEMBER ".Date("Y", strtotime($quarter["start"]));
             break;
         }
-        
+        $fileName = "$qtText.pdf";
         if ($period) {
             $assignedCases = self::assignedCases($quarter);
             $broughtForward = self::casesBroughtForward($quarter);
@@ -349,11 +350,57 @@ class CaseController extends Controller
 
     public function archive(){
 
-        return view("archive");
+        $stages = SettingsController::listCaseStagesTypes("ts");
+        $cases = Cases::where('termination_date','=',null)->orderBy('case_id','asc')->get();
+        $archivedCases = Cases::where('termination_date','<>',null)->orderBy('case_id','asc')->get();
+        return view("archive",['terminationMsg' => $stages, 'cases'=>$cases, 'archived'=>$archivedCases]);
     }
 
     public function archiveUpdate(Request $request){
 
+            $request->validate([
+                'case_id'=>'required',
+                'termination_date'=>'required',
+                'termination_msg'=>'required',
+            ]);
+
+            // archiving case after termination
+        $insert = CaseArchive::create([
+            'case_id'=>$request['case_id'],
+            'termination_msg' => $request['termination_msg'],
+            'termination_date' => $request['termination_date'],
+            'comment' => $request['comment'],
+            'archived_by' => Auth::user()->file_number,
+        ]);
+
+        // updating case stage
+        $case = Cases::find($request['case_id']);
+
+        $updateCase = Cases::where('id', $request['case_id'])
+        ->update([
+            'current_stage' => $request['termination_msg'],
+            'termination_date' => $request['termination_date'],
+            'comment' => $request['comment'],
+            'curr_user' => Auth::user()->file_number,
+        ]);
+
+        //update case changing log
+        // TODO 
+            // ensure users that made changes to a case are tracked
+        $caseStage = CaseStages::create([
+            'case_ref' => $case->id,
+            'case_id' => $case->case_id,
+            'prev_stage' => $case->current_stage,
+            'prev_stage_date' => $case->filing_date,
+            'new_stage' => $request['termination_msg'],
+            'new_stage_date' => $request['termination_date'],
+            'curr_user' => Auth::user()->file_number,
+        ]);
+
+            
+        
+
+        return $updateCase ? redirect()->back()->withSuccess("Case Status Updated Successfully") : redirect()->back()->withError("Operation Failed") ;
     }
 
 }
