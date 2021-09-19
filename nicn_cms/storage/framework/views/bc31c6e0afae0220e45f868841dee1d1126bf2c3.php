@@ -30,6 +30,12 @@
               </a>
             </li>
             <li class="nav-item">
+              <a class="nav-link <?php echo e(activeMenu('terminate-case')); ?>" href="<?php echo e(url('#')); ?>">
+                <i class="ni ni-briefcase-24  text-primary"></i>
+                <span class="nav-link-text">Archive Case</span>
+              </a>
+            </li>
+            <li class="nav-item">
                 <a class="nav-link <?php echo e(activeMenu('cases-return')); ?>" href="<?php echo e(url('cases-return')); ?>">
                   <i class="ni ni-bullet-list-67 text-primary"></i>
                   <span class="nav-link-text">Cases Return</span>
