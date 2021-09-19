@@ -30,18 +30,7 @@
                 <span class="nav-link-text">View All Cases</span>
               </a>
             </li>
-            <li class="nav-item">
-              <a class="nav-link" href="<?php echo e(url('archive-case')); ?>">
-                <i class="ni ni-briefcase-24  text-primary"></i>
-                <span class="nav-link-text">Archive Case</span>
-              </a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="<?php echo e(url('cases-return')); ?>">
-                  <i class="ni ni-bullet-list-67 text-primary"></i>
-                  <span class="nav-link-text">Cases Return</span>
-                </a>
-            </li>
+            
             <li class="nav-item">
               <!--
                 <?php echo e($myId = Auth::user()->id); ?>
@@ -53,18 +42,7 @@
               </a>
             </li>
             
-            <li class="nav-item">
-              <a class="nav-link " href="<?php echo e(url('/system-users')); ?>">
-                <i class="ni ni-key-25 text-primary"></i>
-                <span class="nav-link-text">Manage Users</span>
-              </a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link " href="<?php echo e(url('settings')); ?>">
-                <i class="ni ni-circle-08 text-primary"></i>
-                <span class="nav-link-text">Settings</span>
-              </a>
-            </li>
+            
           </ul>
           <!-- Divider -->
           <hr class="my-3">
@@ -104,4 +82,4 @@
         </div>
       </div>
     </div>
-  </nav><?php /**PATH C:\www\laravel_projects\nicn_cms\resources\views/navbars/sideNav.blade.php ENDPATH**/ ?>
+  </nav><?php /**PATH C:\www\laravel_projects\nicn_cms\resources\views/navbars/user_nav.blade.php ENDPATH**/ ?>

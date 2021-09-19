@@ -13,58 +13,35 @@
           <!-- Nav items -->
           <ul class="navbar-nav">
             <li class="nav-item">
-              <a class="nav-link " href="<?php echo e(url('/')); ?>">
+              <a class="nav-link " href="{{ url('/') }}">
                 <i class="ni ni-tv-2 text-primary"></i>
                 <span class="nav-link-text">Dashboard</span>
               </a>
             </li>
             <li class="nav-item">
-              <a class="nav-link " href="<?php echo e(url('case-form')); ?>">
+              <a class="nav-link " href="{{ url('case-form') }}">
                 <i class="ni ni-collection text-primary"></i>
                 <span class="nav-link-text">Add New Case</span>
               </a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="<?php echo e(url('cases')); ?>">
+              <a class="nav-link" href="{{ url('cases') }}">
                 <i class="ni ni-pin-3 text-primary"></i>
                 <span class="nav-link-text">View All Cases</span>
               </a>
             </li>
-            <li class="nav-item">
-              <a class="nav-link" href="<?php echo e(url('archive-case')); ?>">
-                <i class="ni ni-briefcase-24  text-primary"></i>
-                <span class="nav-link-text">Archive Case</span>
-              </a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="<?php echo e(url('cases-return')); ?>">
-                  <i class="ni ni-bullet-list-67 text-primary"></i>
-                  <span class="nav-link-text">Cases Return</span>
-                </a>
-            </li>
+            
             <li class="nav-item">
               <!--
-                <?php echo e($myId = Auth::user()->id); ?>
-
+                {{ $myId = Auth::user()->id }}
               -->
-              <a class="nav-link " href="<?php echo e(url("/system-user/{$myId}")); ?>">
+              <a class="nav-link " href="{{ url("/system-user/{$myId}") }}">
                 <i class="ni ni-single-02 text-primary"></i>
                 <span class="nav-link-text">Profile</span>
               </a>
             </li>
             
-            <li class="nav-item">
-              <a class="nav-link " href="<?php echo e(url('/system-users')); ?>">
-                <i class="ni ni-key-25 text-primary"></i>
-                <span class="nav-link-text">Manage Users</span>
-              </a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link " href="<?php echo e(url('settings')); ?>">
-                <i class="ni ni-circle-08 text-primary"></i>
-                <span class="nav-link-text">Settings</span>
-              </a>
-            </li>
+            
           </ul>
           <!-- Divider -->
           <hr class="my-3">
@@ -94,7 +71,7 @@
             </li>
             
             <li class="nav-item">
-              <a class="nav-link" href="<?php echo e(route('logout')); ?>" onclick="event.preventDefault();
+              <a class="nav-link" href="{{ route('logout') }}" onclick="event.preventDefault();
               document.getElementById('logout-form').submit();" >
                 <i class="ni ni-user-run text-red"></i>
                 <span class="nav-link-text">Logout</span>
@@ -104,4 +81,4 @@
         </div>
       </div>
     </div>
-  </nav><?php /**PATH C:\www\laravel_projects\nicn_cms\resources\views/navbars/sideNav.blade.php ENDPATH**/ ?>
+  </nav>
