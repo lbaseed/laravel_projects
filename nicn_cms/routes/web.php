@@ -26,7 +26,7 @@ use App\Http\Controllers\UsersController;
 // }
 
 Route::get('/', function () {
-    return view('login');
+    return view('auth.login');
 });
 Route::get('/register', function () {
     return view('auth.register');
@@ -43,7 +43,7 @@ Auth::routes();
 //     });
 
 Route::group(['middleware' => ['auth']], function () {
-    Route::get('/home', [App\Http\Controllers\HomeController::class, 'index']);
+    Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
     Route::get('/', [App\Http\Controllers\HomeController::class, 'index']);
 // add new case 
     Route::get('/case-form', [CaseController::class, 'addCaseForm']);
@@ -79,5 +79,10 @@ Route::group(['middleware' => ['auth']], function () {
     Route::get("/system-users", [UsersController::class, "index"]);
     Route::post("/system-users", [UsersController::class, "store"]);
     Route::get("/system-user/{id}", [UsersController::class, "show"]);
+
+// change password
+Route::get("/change-password", [UsersController::class, "changePassword"]);
+Route::post("/change-password", [UsersController::class, "editPassword"]);
+
  
 });

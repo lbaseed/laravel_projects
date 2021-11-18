@@ -1,5 +1,4 @@
 
-
 <!DOCTYPE html>
 <html>
 
@@ -9,6 +8,7 @@
   <meta name="description" content="Start your development with a Dashboard for Bootstrap 4">
   <meta name="author" content="SOENG SOUY">
   <title><?php echo e(config('NICN CMS', 'NICN-CMS')); ?></title>
+
 
   
   <!-- Fonts -->
@@ -27,7 +27,7 @@
         @media (min-width: 992px)
         {
           .pt-lg-9, .py-lg-9 {
-              padding-top: 20rem !important;
+              padding-top: 16rem !important;
           }
         }
         .bg-default {
@@ -37,16 +37,16 @@
     </style>
     
     <!-- Main content -->
-    <div class="main-content header py-5 pt-5 pt-sm-9 pt-lg-9">
+    <div class="main-content header py-7 py-lg-8 pt-lg-9">
     <!-- Header -->
     <!-- Page content -->
     <div class="container mt--8 pb-5">
         <div class="row justify-content-center">
             <div class="col-lg-5 col-md-7">
-                <div class="card bg-secondary border-0 mb-0">
-                    <div class="card-header bg-transparent pb-5 ">
-                        <div class="text-muted text-center mt-2 mb-3"><h3>Sign in</h3></div>
-                            <div class="btn-wrapper text-center d-none">
+                <div class="card bg-secondary border-0 mb-0 ">
+                        <div class="card-header bg-transparent pb-5 d-none">
+                            <div class="text-muted text-center mt-2 mb-3"><small>Sign in with</small></div>
+                            <div class="btn-wrapper text-center">
                                 <a href="" class="btn btn-neutral btn-icon">
                                     <span class="btn-inner--icon"><img src="<?php echo e(URL::to('assets/img/icons/common/github.svg')); ?>"></span>
                                     <span class="btn-inner--text">Github</span>
@@ -60,10 +60,38 @@
 
                         <div class="card-body px-lg-5 py-lg-5">
                             <div class="text-center text-muted mb-4">
-                                <small>Sign in with credentials</small>
+                                <small>Sign up with credentials</small>
                             </div>
-                            <form method="POST" action="<?php echo e(route('login')); ?>">
+                            <form method="POST" action="<?php echo e(route('register')); ?>">
                                 <?php echo csrf_field(); ?>                
+                                <div class="form-group mb-3">
+                                    <div class="input-group input-group-merge input-group-alternative">
+                                        <div class="input-group-prepend">
+                                            <span class="input-group-text"><i class="ni ni-hat-3"></i></span>
+                                        </div>
+                                        <input type="text" class="form-control <?php $__errorArgs = ['name'];
+$__bag = $errors->getBag($__errorArgs[1] ?? 'default');
+if ($__bag->has($__errorArgs[0])) :
+if (isset($message)) { $__messageOriginal = $message; }
+$message = $__bag->first($__errorArgs[0]); ?> is-invalid <?php unset($message);
+if (isset($__messageOriginal)) { $message = $__messageOriginal; }
+endif;
+unset($__errorArgs, $__bag); ?>" name="name" value="<?php echo e(old('name')); ?>" autocomplete="off" autofocus placeholder="Enter name">
+                                        <?php $__errorArgs = ['name'];
+$__bag = $errors->getBag($__errorArgs[1] ?? 'default');
+if ($__bag->has($__errorArgs[0])) :
+if (isset($message)) { $__messageOriginal = $message; }
+$message = $__bag->first($__errorArgs[0]); ?>
+                                            <span class="invalid-feedback" role="alert">
+                                                <strong><?php echo e($message); ?></strong>
+                                            </span>
+                                        <?php unset($message);
+if (isset($__messageOriginal)) { $message = $__messageOriginal; }
+endif;
+unset($__errorArgs, $__bag); ?>
+                                    </div>
+                                </div>
+
                                 <div class="form-group mb-3">
                                     <div class="input-group input-group-merge input-group-alternative">
                                         <div class="input-group-prepend">
@@ -90,9 +118,9 @@ if (isset($__messageOriginal)) { $message = $__messageOriginal; }
 endif;
 unset($__errorArgs, $__bag); ?>
                                     </div>
-                                    
                                 </div>
-                                <div class="form-group">
+
+                                <div class="form-group mb-3">
                                     <div class="input-group input-group-merge input-group-alternative">
                                         <div class="input-group-prepend">
                                             <span class="input-group-text"><i class="ni ni-lock-circle-open"></i></span>
@@ -104,7 +132,7 @@ if (isset($message)) { $__messageOriginal = $message; }
 $message = $__bag->first($__errorArgs[0]); ?> is-invalid <?php unset($message);
 if (isset($__messageOriginal)) { $message = $__messageOriginal; }
 endif;
-unset($__errorArgs, $__bag); ?>" name="password" autocomplete="off" placeholder="Password">
+unset($__errorArgs, $__bag); ?>" name="password"   autocomplete="off" autofocus placeholder="Password">
                                         <?php $__errorArgs = ['password'];
 $__bag = $errors->getBag($__errorArgs[1] ?? 'default');
 if ($__bag->has($__errorArgs[0])) :
@@ -119,17 +147,27 @@ endif;
 unset($__errorArgs, $__bag); ?>
                                     </div>
                                 </div>
-                                <div class="custom-control custom-control-alternative custom-checkbox">
+
+                                <div class="form-group">
+                                    <div class="input-group input-group-merge input-group-alternative">
+                                        <div class="input-group-prepend">
+                                            <span class="input-group-text"><i class="ni ni-lock-circle-open"></i></span>
+                                        </div>
+                                        <input type="password" class="form-control" name="password_confirmation" placeholder="new-password">
+                                    </div>
+                                </div>
+
+                                <div class="custom-control custom-control-alternative custom-checkbox d-none">
                                     <input class="custom-control-input" id=" customCheckLogin" type="checkbox"  name="remember" id="remember" <?php echo e(old('remember') ? 'checked' : ''); ?>>
                                     <label class="custom-control-label" for=" customCheckLogin">
                                         <span class="text-muted">Remember me</span>
                                     </label>
                                 </div>
                                 <div class="text-center">
-                                    <button type="submit" class="btn btn-primary my-4">Sign in</button>
+                                    <button type="submit" class="btn btn-primary my-4">Sign up</button>
                                 </div>
                                 <div class="text-center mb-3">
-                                    <p class="text-muted">Don't Have an account? <a href="<?php echo e(route('register')); ?>">Sign up</a></p>
+                                    <p class="text-muted">Have an account? <a href="<?php echo e(route('login')); ?>">Signin</a></p>
                                 </div>                    
                             </form>
                         </div>
@@ -151,4 +189,4 @@ unset($__errorArgs, $__bag); ?>
 
 </body>
 </html>
-<?php /**PATH C:\Users\lbase\Documents\GitHub\laravel_projects\nicn_cms\resources\views/auth/login.blade.php ENDPATH**/ ?>
+<?php /**PATH C:\Users\lbase\Documents\GitHub\nicn_cms\resources\views/auth/register.blade.php ENDPATH**/ ?>
